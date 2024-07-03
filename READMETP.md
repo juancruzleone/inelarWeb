@@ -20,14 +20,13 @@ Back:
 
 
 Funcionalidades:
--- Login y Register
--- Carrito (Vaciar carrito)
--- Listado de productos con filtrado por categoria
--- Checkout con API de mercadopago
--- Perfil de usuario con las ordenes de compras realizadas
--- Edición del perfil del usuario
--- Solicitud de servicios (Mantenimiento, Servicio técnico, Instalaciones, Provisiones)
--- Autenticación para visualizar en el nav y acceder al panel admin
+-- Autenticación (Otorgar/Eliminar permisos para visitar y visualizar las secciones en el nav)
+-- Cuentas (Inciar sesión y Registarse)
+-- Solicitud de servicios (Mantenimiento, Servicio técnico, Instalaciones y Provisiones)
+-- Productos (Filtrado por categoria, agregar al carrito)
+-- Contacto (Enviar mensaje de contacto que se va a visualizar en el panel admin)
+-- Carrito (Agregar cantidades de productos, Eliminar productos, Vaciar carrito y Checkout con API de mercadopago)
+-- Perfil de usuario (Editar nombre de usuario, ver ordenes de compras realizadas)
 -- Panel admin (Productos, clientes, mensajes y mensajes de contacto)
       |
       |
@@ -46,6 +45,17 @@ Funcionalidades:
 
 
 
+Usuario admin:
+-- Usuario: admin123
+-- Contraseña: admin123
+
+Usuario normal:
+-- Usuario: 
+-- Contraseña:
+
+Usuario prueba de mercadopago:
+-- Usuario: TESTUSER1436795086
+-- Contraseña: Bk0lzZ8mnN
 
 
 
