@@ -1,14 +1,11 @@
-// contactoRoutes.js
 import { Router } from 'express';
-import * as controllers from '../controllers/controller.api.contacto.js';
-import { validateContact } from '../../middleware/contacto.validate.middleware.js';
+import * as controllers from '../controllers/controller.api.contact.js';
+import { validateContact } from '../../middleware/contact.validate.middleware.js';
 
 const route = Router();
 
-// Agregar un contacto
 route.post('/contactos', async (req, res) => {
   try {
-    // Validar el contacto y manejar la lógica del controlador
     await validateContact(req, res, async () => {
       await controllers.insertContact(req.body);
       res.status(201).json({ message: "Contacto agregado correctamente" });
@@ -19,7 +16,7 @@ route.post('/contactos', async (req, res) => {
   }
 });
 
-// Obtener todos los contactos
+
 route.get('/contactos', async (req, res) => {
   try {
     const contactos = await controllers.getContacts();

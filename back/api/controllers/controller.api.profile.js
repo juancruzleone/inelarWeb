@@ -1,7 +1,7 @@
 import * as services from '../../services/profile.services.js';
-import { validarToken } from '../../services/token.service.js';
+import { validateToken } from '../../services/token.service.js';
 
-async function editarPerfil(req, res) {
+async function editProfile(req, res) {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     return res.status(401).json({ error: { message: 'Authorization header missing' } });
@@ -10,7 +10,7 @@ async function editarPerfil(req, res) {
   const token = authHeader.split(' ')[1];
 
   try {
-    const user = await validarToken(token);
+    const user = await validateToken(token);
     if (!user) {
       return res.status(401).json({ error: { message: 'Invalid or expired token' } });
     }
@@ -18,7 +18,7 @@ async function editarPerfil(req, res) {
     const { userName } = req.body;
 
     try {
-      await services.editarPerfil(user._id, userName);
+      await services.editProfile(user._id, userName);
       res.status(200).json({ message: 'Perfil actualizado correctamente' });
     } catch (err) {
       res.status(400).json({ error: { message: err.message } });
@@ -28,4 +28,4 @@ async function editarPerfil(req, res) {
   }
 }
 
-export { editarPerfil };
+export { editProfile };

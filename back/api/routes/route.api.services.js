@@ -1,14 +1,12 @@
 // contactoRoutes.js
 import { Router } from 'express';
-import * as controllers from '../controllers/controller.api.servicios.js';
+import * as controllers from '../controllers/controller.api.services.js';
 import { validateService } from '../../middleware/service.validate.middleware.js';
 
 const route = Router();
 
-// Agregar un servicio
 route.post('/servicios', async (req, res) => {
   try {
-    // Validar el servicio y manejar la lógica del controlador
     await validateService(req, res, async () => {
       await controllers.insertService(req.body);
       res.status(201).json({ message: "Servicio agregado correctamente" });
@@ -19,7 +17,7 @@ route.post('/servicios', async (req, res) => {
   }
 });
 
-// Obtener todos los servicios
+
 route.get('/servicios', async (req, res) => {
   try {
     const servicios = await controllers.getServices();

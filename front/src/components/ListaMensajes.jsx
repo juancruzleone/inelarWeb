@@ -1,20 +1,18 @@
-// components/ListaMensajes.js
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/Home.module.css";
 
 const ListaMensajes = () => {
-  const [mensajes, setMensajes] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Realiza la solicitud al backend cuando el componente se monta
-    const obtenerMensajes = async () => {
+    const fetchMessages = async () => {
       setLoading(true);
       try {
         const response = await fetch("http://localhost:2023/api/contactos");
         const data = await response.json();
 
-        setMensajes(data);
+        setMessages(data);
       } catch (error) {
         console.error("Error al obtener mensajes:", error);
       } finally {
@@ -22,8 +20,8 @@ const ListaMensajes = () => {
       }
     };
 
-    obtenerMensajes();
-  }, []); // Se ejecuta solo cuando el componente se monta
+    fetchMessages();
+  }, []);
 
   return (
     <div className={styles.app}>
@@ -34,12 +32,12 @@ const ListaMensajes = () => {
             {loading ? (
               <p>Cargando mensajes...</p>
             ) : (
-              mensajes.map((mensaje, index) => (
+              messages.map((message, index) => (
                 <div key={index} className={styles.tarjetaProductoPanel}>
-                  <h3>{mensaje.name}</h3>
+                  <h3>{message.name}</h3>
                   <div className={styles.contenidoTarjetaProductoPanelContacto}>
-                    <p><span>Email:</span> {mensaje.email}</p>
-                    <p><span>Mensaje:</span> {mensaje.message}</p>
+                    <p><span>Email:</span> {message.email}</p>
+                    <p><span>Mensaje:</span> {message.message}</p>
                   </div>
                 </div>
               ))

@@ -7,12 +7,11 @@ import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-// Configurar react-modal
 Modal.setAppElement("#__next");
 
 const Register = () => {
-  const [usuario, setUsuario] = useState("");
-  const [contraseña, setContraseña] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -21,27 +20,27 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!usuario && !contraseña) {
+    if (!username && !password) {
       setError("Ingrese ambos campos para registrarse.");
       return;
     }
 
-    if (!usuario) {
+    if (!username) {
       setError("Por favor, ingresa un nombre de usuario.");
       return;
     }
 
-    if (!contraseña) {
+    if (!password) {
       setError("Por favor, ingresa una contraseña.");
       return;
     }
 
-    if (usuario.length < 6) {
+    if (username.length < 6) {
       setError("El nombre de usuario debe tener al menos 6 caracteres.");
       return;
     }
 
-    if (contraseña.length < 6) {
+    if (password.length < 6) {
       setError("La contraseña debe tener al menos 6 caracteres.");
       return;
     }
@@ -52,7 +51,7 @@ const Register = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userName: usuario, password: contraseña }),
+        body: JSON.stringify({ userName: username, password }),
       });
 
       if (!response.ok) {
@@ -97,8 +96,8 @@ const Register = () => {
               id="usuario"
               name="usuario"
               placeholder="Crea un usuario nuevo"
-              value={usuario}
-              onChange={(e) => setUsuario(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className={styles.inputField}
             />
             <label htmlFor="contraseña" className={styles.formLabel}>
@@ -110,8 +109,8 @@ const Register = () => {
                 id="contraseña"
                 name="contraseña"
                 placeholder="Crea la contraseña"
-                value={contraseña}
-                onChange={(e) => setContraseña(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className={styles.inputField}
               />
               <button

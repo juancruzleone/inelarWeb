@@ -9,12 +9,11 @@ const Layout = ({ children }) => {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    // Verificar si el usuario tiene el rol de administrador en localStorage
     const userData = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("userData")) : null;
 
     if (userData) {
       setIsLoggedIn(true);
-      setUserId(userData.cuenta._id); // Set the userId
+      setUserId(userData.cuenta._id); 
       if (userData.cuenta && userData.cuenta.role === "admin") {
         setIsAdmin(true);
       }
@@ -25,7 +24,7 @@ const Layout = ({ children }) => {
     localStorage.removeItem("userData");
     setIsLoggedIn(false);
     setIsAdmin(false);
-    // Redirigir a la página de inicio o a la página de login
+    
     window.location.href = "/login";
   };
 

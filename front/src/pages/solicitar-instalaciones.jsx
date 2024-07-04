@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
-import * as yup from "yup";
 
-const SolicitarServicioTecnico = () => {
+const SolicitarInstalaciones = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
     telefono: "",
     direccion: "",
-    problema: "",
-    fecha: "",
     dispositivo: "",
-    cantidad: 1, // Valor predeterminado para la cantidad
-    category: "tecnico", // Valor predeterminado para la categoría
+    fecha: "",
+    cantidad: "", 
+    category: "instalaciones", 
   });
 
   const [productos, setProductos] = useState([]);
@@ -33,17 +31,6 @@ const SolicitarServicioTecnico = () => {
     obtenerProductos();
   }, []);
 
-  const schema = yup.object().shape({
-    nombre: yup.string().required("El nombre es obligatorio"),
-    email: yup.string().email("Introduce un email válido").required("El email es obligatorio"),
-    telefono: yup.string().required("El teléfono es obligatorio"),
-    direccion: yup.string().required("La dirección es obligatoria"),
-    problema: yup.string().required("Describe el problema"),
-    dispositivo: yup.string().required("Selecciona un dispositivo"),
-    cantidad: yup.number().required("La cantidad es obligatoria").positive("La cantidad debe ser positiva"),
-    fecha: yup.date().required("La fecha es obligatoria"),
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -51,18 +38,16 @@ const SolicitarServicioTecnico = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await schema.validate(formData, { abortEarly: false });
 
+    try {
       const requestBody = {
         nombre: formData.nombre,
         email: formData.email,
         telefono: formData.telefono,
         direccion: formData.direccion,
-        problema: formData.problema,
-        fecha: formData.fecha,
         dispositivo: formData.dispositivo,
-        cantidad: formData.cantidad,
+        fecha: formData.fecha,
+        cantidad: formData.cantidad, 
         category: formData.category,
       };
 
@@ -75,30 +60,24 @@ const SolicitarServicioTecnico = () => {
       });
 
       if (res.ok) {
-        const data = await res.json();
         alert("Solicitud enviada con éxito");
       } else {
-        alert(`Ocurrió un error al enviar la solicitud: ${res.status}`);
+        const errorData = await res.json();
+        alert(`Ocurrió un error al enviar la solicitud: ${errorData.message}`);
       }
     } catch (err) {
-      if (err.name === 'ValidationError') {
-        const errorMessages = err.errors.join('\n');
-        alert(`Errores de validación:\n${errorMessages}`);
-      } else {
-        console.error(err);
-        alert("Ocurrió un error al enviar la solicitud");
-      }
+      console.error(err);
+      alert("Ocurrió un error al enviar la solicitud");
     }
   };
 
   return (
     <Layout>
-      <h1 className={styles.tituloSolicitudServicio}>Solicitar servicio técnico</h1>
+      <h1 className={styles.tituloSolicitudServicio}>Solicitar instalación</h1>
       <div className={styles.contenedorContenidoServicio}>
         <p className={styles.textoSolicitudServicios}>
-          Si quieres solicitar nuestro servicio de reparación de dispositivos,
-          por favor completa el siguiente formulario con tus datos y los detalles
-          de tu problema. Nos pondremos en contacto contigo lo antes posible
+          Si quieres solicitar nuestro servicio de instalación de dispositivos,
+          por favor completa el siguiente formulario con tus datos y los detalles de tu solicitud. Nos pondremos en contacto contigo lo antes posible
           para confirmar la fecha y el precio.
         </p>
         <form onSubmit={handleSubmit} className={styles.formulario}>
@@ -138,14 +117,6 @@ const SolicitarServicioTecnico = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="problema">Problema:</label>
-          <textarea
-            id="problema"
-            name="problema"
-            value={formData.problema}
-            onChange={handleChange}
-            required
-          />
           <label htmlFor="dispositivo">Dispositivo:</label>
           <select
             id="dispositivo"
@@ -169,6 +140,7 @@ const SolicitarServicioTecnico = () => {
             value={formData.cantidad}
             onChange={handleChange}
             required
+            min="1" 
           />
           <label htmlFor="fecha">Fecha deseada:</label>
           <input
@@ -189,4 +161,4 @@ const SolicitarServicioTecnico = () => {
   );
 };
 
-export default SolicitarServicioTecnico;
+export default SolicitarInstalaciones;

@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
 
-const Mantenimientos = () => {
+const Mantenimiento = () => {
   return (
     <Layout className={styles.app}>
       <h1 className={styles.tituloServicio}>Mantenimientos</h1>
@@ -33,4 +33,4 @@ const Mantenimientos = () => {
   );
 };
 
-export default Mantenimientos;
+export default Mantenimiento;

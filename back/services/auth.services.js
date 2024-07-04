@@ -6,7 +6,7 @@ const client = new MongoClient('mongodb+srv://juan:juan123@proyectoinelar.2eadsp
 const db = client.db("inelar");
 const cuentaCollection = db.collection("cuentas");
 
-async function crearCuenta(cuenta) {
+async function createAccount(cuenta) {
     await client.connect();
 
     const existe = await cuentaCollection.findOne({ userName: cuenta.userName });
@@ -34,6 +34,6 @@ async function login(cuenta) {
 }
 
 export {
-    crearCuenta,
+    createAccount,
     login
 };

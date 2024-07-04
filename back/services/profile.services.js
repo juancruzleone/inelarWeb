@@ -4,7 +4,7 @@ const client = new MongoClient('mongodb+srv://juan:juan123@proyectoinelar.2eadsp
 const db = client.db('inelar');
 const cuentaCollection = db.collection('cuentas');
 
-async function editarPerfil(userId, userName) {
+async function editProfile(userId, userName) {
   await client.connect();
 
   const existe = await cuentaCollection.findOne({ userName });
@@ -16,4 +16,4 @@ async function editarPerfil(userId, userName) {
   );
 }
 
-export { editarPerfil };
+export { editProfile };

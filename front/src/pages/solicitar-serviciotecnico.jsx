@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
-import * as yup from "yup";
 
-const SolicitarInstalacion = () => {
+const SolicitarServicioTecnico = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
     telefono: "",
     direccion: "",
-    dispositivo: "",
+    problema: "",
     fecha: "",
-    cantidad: "", 
-    category: "instalaciones", // Valor predeterminado para la categoría
+    dispositivo: "",
+    cantidad: 1, 
+    category: "tecnico", 
   });
 
   const [productos, setProductos] = useState([]);
@@ -32,16 +32,6 @@ const SolicitarInstalacion = () => {
     obtenerProductos();
   }, []);
 
-  const schema = yup.object().shape({
-    nombre: yup.string().required("El nombre es obligatorio"),
-    email: yup.string().email("Introduce un email válido").required("El email es obligatorio"),
-    telefono: yup.string().required("El teléfono es obligatorio"),
-    direccion: yup.string().required("La dirección es obligatoria"),
-    dispositivo: yup.string().required("Selecciona un dispositivo"),
-    cantidad: yup.number().required("La cantidad es obligatoria").positive("La cantidad debe ser positiva"),
-    fecha: yup.date().required("La fecha es obligatoria"),
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -50,19 +40,18 @@ const SolicitarInstalacion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Crear un objeto con los campos necesarios para la solicitud
       const requestBody = {
         nombre: formData.nombre,
         email: formData.email,
         telefono: formData.telefono,
         direccion: formData.direccion,
-        dispositivo: formData.dispositivo,
+        problema: formData.problema,
         fecha: formData.fecha,
-        cantidad: formData.cantidad, // Agregar la cantidad al objeto
+        dispositivo: formData.dispositivo,
+        cantidad: formData.cantidad,
         category: formData.category,
       };
 
-      // Enviar una petición POST a la ruta /api/servicios con los datos del formulario
       const res = await fetch("http://localhost:2023/api/servicios", {
         method: "POST",
         headers: {
@@ -71,18 +60,14 @@ const SolicitarInstalacion = () => {
         body: JSON.stringify(requestBody),
       });
 
-      // Verificar si la respuesta es exitosa
       if (res.ok) {
-        // Convertir la respuesta a un objeto JSON
         const data = await res.json();
-        // Mostrar un mensaje de éxito
         alert("Solicitud enviada con éxito");
       } else {
-        // Mostrar un mensaje de error según el código de estado
-        alert(`Ocurrió un error al enviar la solicitud: ${res.status}`);
+        const errorData = await res.json();
+        alert(`Ocurrió un error al enviar la solicitud: ${errorData.message}`);
       }
     } catch (err) {
-      // Mostrar un mensaje de error por problemas de red o del servidor
       console.error(err);
       alert("Ocurrió un error al enviar la solicitud");
     }
@@ -90,11 +75,12 @@ const SolicitarInstalacion = () => {
 
   return (
     <Layout>
-      <h1 className={styles.tituloSolicitudServicio}>Solicitar instalación</h1>
+      <h1 className={styles.tituloSolicitudServicio}>Solicitar servicio técnico</h1>
       <div className={styles.contenedorContenidoServicio}>
         <p className={styles.textoSolicitudServicios}>
-          Si quieres solicitar nuestro servicio de instalación de dispositivos,
-          por favor completa el siguiente formulario con tus datos y los detalles de tu solicitud. Nos pondremos en contacto contigo lo antes posible
+          Si quieres solicitar nuestro servicio de reparación de dispositivos,
+          por favor completa el siguiente formulario con tus datos y los detalles
+          de tu problema. Nos pondremos en contacto contigo lo antes posible
           para confirmar la fecha y el precio.
         </p>
         <form onSubmit={handleSubmit} className={styles.formulario}>
@@ -134,6 +120,14 @@ const SolicitarInstalacion = () => {
             onChange={handleChange}
             required
           />
+          <label htmlFor="problema">Problema:</label>
+          <textarea
+            id="problema"
+            name="problema"
+            value={formData.problema}
+            onChange={handleChange}
+            required
+          />
           <label htmlFor="dispositivo">Dispositivo:</label>
           <select
             id="dispositivo"
@@ -149,7 +143,6 @@ const SolicitarInstalacion = () => {
               </option>
             ))}
           </select>
-          {/* Agregar el campo cantidad al formulario */}
           <label htmlFor="cantidad">Cantidad:</label>
           <input
             type="number"
@@ -158,7 +151,7 @@ const SolicitarInstalacion = () => {
             value={formData.cantidad}
             onChange={handleChange}
             required
-            min="1" // Asegurar que la cantidad sea mayor o igual a 1
+            min="1"
           />
           <label htmlFor="fecha">Fecha deseada:</label>
           <input
@@ -174,9 +167,9 @@ const SolicitarInstalacion = () => {
           </button>
         </form>
       </div>
-      <Footer></Footer>
+      <Footer />
     </Layout>
   );
 };
 
-export default SolicitarInstalacion;
+export default SolicitarServicioTecnico;

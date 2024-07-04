@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
-import * as yup from "yup";
 
 const SolicitarMantenimiento = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +11,8 @@ const SolicitarMantenimiento = () => {
     direccion: "",
     dispositivo: "",
     fecha: "",
-    cantidad: "", // Valor predeterminado para la cantidad
-    category: "mantenimiento", // Valor predeterminado para la categoría
+    cantidad: "", 
+    category: "mantenimiento", 
   });
 
   const [productos, setProductos] = useState([]);
@@ -32,16 +31,6 @@ const SolicitarMantenimiento = () => {
     obtenerProductos();
   }, []);
 
-  const schema = yup.object().shape({
-    nombre: yup.string().required("El nombre es obligatorio"),
-    email: yup.string().email("Introduce un email válido").required("El email es obligatorio"),
-    telefono: yup.string().required("El teléfono es obligatorio"),
-    direccion: yup.string().required("La dirección es obligatoria"),
-    dispositivo: yup.string().required("Selecciona un dispositivo"),
-    fecha: yup.date().required("La fecha es obligatoria"),
-    cantidad: yup.number().required("La cantidad es obligatoria").positive("La cantidad debe ser positiva"),
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -50,8 +39,6 @@ const SolicitarMantenimiento = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await schema.validate(formData, { abortEarly: false });
-
       const requestBody = {
         nombre: formData.nombre,
         email: formData.email,
@@ -59,7 +46,7 @@ const SolicitarMantenimiento = () => {
         direccion: formData.direccion,
         dispositivo: formData.dispositivo,
         fecha: formData.fecha,
-        cantidad: formData.cantidad,
+        cantidad: formData.cantidad, 
         category: formData.category,
       };
 
@@ -75,16 +62,12 @@ const SolicitarMantenimiento = () => {
         const data = await res.json();
         alert("Solicitud enviada con éxito");
       } else {
-        alert(`Ocurrió un error al enviar la solicitud: ${res.status}`);
+        const errorData = await res.json();
+        alert(`Ocurrió un error al enviar la solicitud: ${errorData.message}`);
       }
     } catch (err) {
-      if (err.name === 'ValidationError') {
-        const errorMessages = err.errors.join('\n');
-        alert(`Errores de validación:\n${errorMessages}`);
-      } else {
-        console.error(err);
-        alert("Ocurrió un error al enviar la solicitud");
-      }
+      console.error(err);
+      alert("Ocurrió un error al enviar la solicitud");
     }
   };
 
@@ -156,6 +139,7 @@ const SolicitarMantenimiento = () => {
             value={formData.cantidad}
             onChange={handleChange}
             required
+            min="1"
           />
           <label htmlFor="fecha">Fecha deseada:</label>
           <input

@@ -3,7 +3,6 @@ import * as controllers from '../controllers/controller.api.profile.js';
 
 const route = Router();
 
-// Edit profile
-route.put('/cuenta/profile', controllers.editarPerfil);
+route.put('/cuenta/profile', controllers.editProfile);
 
 export default route;

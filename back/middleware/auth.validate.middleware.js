@@ -1,9 +1,8 @@
-import * as cuentaSchema from '../schemas/auth.schema.js';
+import * as accountSchema from '../schemas/auth.schema.js';
 
-async function validarCuenta(req, res, next) {
+async function validateAccount(req, res, next) {
     try {
-        // Validar el esquema usando Yup
-        const cuenta = await cuentaSchema.cuenta.validate(req.body, { abortEarly: false, stripUnknown: true });
+        const cuenta = await accountSchema.cuenta.validate(req.body, { abortEarly: false, stripUnknown: true });
         req.body = cuenta;
         next();
     } catch (err) {
@@ -14,4 +13,4 @@ async function validarCuenta(req, res, next) {
 
 
 
-export { validarCuenta };
+export { validateAccount };

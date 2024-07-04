@@ -2,7 +2,7 @@ import { MercadoPagoConfig, Preference } from 'mercadopago';
 import { MongoClient } from 'mongodb';
 
 const client = new MongoClient('mongodb+srv://juan:juan123@proyectoinelar.2eadspu.mongodb.net/');
-await client.connect();  // Asegúrate de conectar el cliente
+await client.connect();  
 const db = client.db("inelar");
 
 const createOrder = async (req, res) => {
@@ -35,10 +35,9 @@ const createOrder = async (req, res) => {
 
         const result = await preference.create({ body: preferenceBody });
 
-        // Insertar la orden en la base de datos
         if (result.status === 'approved') {
             const orden = {
-                userId,  // Asegurarse de asignar el userId recibido
+                userId, 
                 items: carrito,
                 total: carrito.reduce((acc, producto) => acc + producto.precio * producto.unidades, 0),
                 estado: 'aprobado',

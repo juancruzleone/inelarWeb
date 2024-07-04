@@ -11,19 +11,17 @@ const Productos = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Realiza la solicitud al backend cuando el componente se monta
-    const obtenerProductos = async () => {
+    const fetchProducts = async () => {
       setLoading(true);
       try {
         const response = await fetch("http://localhost:2023/api/productos");
         const data = await response.json();
 
-        // Filtrar productos según la categoría seleccionada
-        const productosFiltrados = categoriaSeleccionada
+        const filteredProducts = categoriaSeleccionada
           ? data.filter((producto) => producto.categoria === categoriaSeleccionada)
           : data;
 
-        setProductos(productosFiltrados);
+        setProductos(filteredProducts);
       } catch (error) {
         console.error("Error al obtener productos:", error);
       } finally {
@@ -31,11 +29,11 @@ const Productos = () => {
       }
     };
 
-    obtenerProductos();
-  }, [categoriaSeleccionada]); // Se ejecuta cuando cambia la categoría seleccionada
+    fetchProducts();
+  }, [categoriaSeleccionada]);
 
-  const cambiaCategoria = (categoria) => {
-    setCategoriaSeleccionada(categoria);
+  const changeCategory = (category) => {
+    setCategoriaSeleccionada(category);
   };
 
   return (
@@ -44,18 +42,16 @@ const Productos = () => {
         <h1 className={styles.tituloPaginas}>Productos</h1>
         <div className={styles.posicionSeccionProductos}>
           <div className={styles.contenedorCategoriasProductos} id={styles.contenedorCategoriaProductos}>
-            {/* Aplica la clase condicional aquí */}
             <a
               href="#"
-              onClick={() => cambiaCategoria("detección")}
+              onClick={() => changeCategory("detección")}
               className={categoriaSeleccionada === "detección" ? styles.categoriaSeleccionadaProducto : ""}
             >
               Detección
             </a>
-            {/* Aplica la clase condicional aquí */}
             <a
               href="#"
-              onClick={() => cambiaCategoria("extinción")}
+              onClick={() => changeCategory("extinción")}
               className={categoriaSeleccionada === "extinción" ? styles.categoriaSeleccionadaProducto : ""}
             >
               Extinción

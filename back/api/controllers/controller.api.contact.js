@@ -1,18 +1,15 @@
-// controller.api.contacto.js
 import { db } from "../../db.js";
-import { contactSchema } from "../../schemas/contact.schemas.js";
+import { contactSchema } from "../../schemas/contact.schema.js";
 
 async function insertContact(contact) {
   try {
-    // Validar el contacto contra el esquema
     await contactSchema.validate(contact);
 
-    // Insertar el documento en la colección de contactos
     await db.collection("contactos").insertOne(contact);
     console.log("Contacto guardado en la base de datos");
   } catch (error) {
     console.error("Error al insertar el contacto en la base de datos:", error);
-    throw error; // Puedes manejar el error de otra manera según tus necesidades
+    throw error; 
   }
 }
 async function getContacts() {
@@ -21,7 +18,7 @@ async function getContacts() {
     return contactos;
   } catch (error) {
     console.error("Error al obtener la lista de contactos:", error);
-    throw error; // Puedes manejar el error de otra manera según tus necesidades
+    throw error; 
   }
 }
 

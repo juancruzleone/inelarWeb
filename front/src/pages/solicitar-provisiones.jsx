@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
-import * as yup from "yup";
 
 const SolicitarProvisiones = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +12,7 @@ const SolicitarProvisiones = () => {
     dispositivo: "",
     cantidad: "",
     fecha: "",
-    category: "provisiones", // Agregar la categoría del servicio
+    category: "provisiones", 
   });
 
   const [productList, setProductList] = useState([]);
@@ -23,7 +22,6 @@ const SolicitarProvisiones = () => {
       try {
         const response = await fetch("http://localhost:2023/api/productos");
         const data = await response.json();
-
         setProductList(data);
       } catch (error) {
         console.error("Error al obtener productos:", error);
@@ -33,16 +31,6 @@ const SolicitarProvisiones = () => {
     obtenerProductos();
   }, []);
 
-  const schema = yup.object().shape({
-    nombre: yup.string().required("El nombre es obligatorio"),
-    email: yup.string().email("Introduce un email válido").required("El email es obligatorio"),
-    telefono: yup.string().required("El teléfono es obligatorio"),
-    direccion: yup.string().required("La dirección es obligatoria"),
-    dispositivo: yup.string().required("Selecciona un dispositivo"),
-    cantidad: yup.number().required("La cantidad es obligatoria").positive("La cantidad debe ser positiva"),
-    fecha: yup.date().required("La fecha es obligatoria"),
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -51,8 +39,6 @@ const SolicitarProvisiones = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await schema.validate(formData, { abortEarly: false });
-
       const requestBody = {
         nombre: formData.nombre,
         email: formData.email,
@@ -61,7 +47,7 @@ const SolicitarProvisiones = () => {
         dispositivo: formData.dispositivo,
         cantidad: formData.cantidad,
         fecha: formData.fecha,
-        category: formData.category, // Agregar la categoría del servicio
+        category: formData.category,
       };
 
       const res = await fetch("http://localhost:2023/api/servicios", {
@@ -76,16 +62,12 @@ const SolicitarProvisiones = () => {
         const data = await res.json();
         alert("Solicitud enviada con éxito");
       } else {
-        alert(`Ocurrió un error al enviar la solicitud: ${res.status}`);
+        const errorData = await res.json();
+        alert(`Ocurrió un error al enviar la solicitud: ${errorData.message}`);
       }
     } catch (err) {
-      if (err.name === 'ValidationError') {
-        const errorMessages = err.errors.join('\n');
-        alert(`\n${errorMessages}`);
-      } else {
-        console.error(err);
-        alert("Ocurrió un error al enviar la solicitud");
-      }
+      console.error(err);
+      alert("Ocurrió un error al enviar la solicitud");
     }
   };
 
@@ -159,6 +141,7 @@ const SolicitarProvisiones = () => {
             value={formData.cantidad}
             onChange={handleChange}
             required
+            min="1"
           />
           <label htmlFor="fecha">Fecha deseada:</label>
           <input

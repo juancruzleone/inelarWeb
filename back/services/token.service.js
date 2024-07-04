@@ -6,7 +6,7 @@ const db = client.db("inelar")
 
 const tokenCollection = db.collection("tokens")
 
-async function crearToken(cuenta){
+async function createToken(cuenta){
     const token = jwt.sign(cuenta,"Clave Secreta")
 
     await client.connect()
@@ -16,7 +16,7 @@ async function crearToken(cuenta){
     return token
 }
 
-async function validarToken(token){
+async function validateToken(token){
     try {
         const payload = jwt.verify(token, "Clave Secreta")
         console.log("payload",payload)
@@ -34,7 +34,7 @@ async function removeToken(token){
     await tokenCollection.deleteOne({token})
 }
 export {
-    crearToken,
-    validarToken,
+    createToken,
+    validateToken,
     removeToken
 }

@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
 
-const certificaciones = () => {
+const Certificaciones = () => {
   return (
     <Layout>
       <h1 className={styles.tituloPaginas}>Certificaciones</h1>
@@ -15,7 +15,7 @@ const certificaciones = () => {
         <div className={styles.contenedorCertificaciones}>
           <Image
             src="/logo-iram.svg"
-            alt="Logo certificación iram"
+            alt="Logo certificación IRAM"
             width={120}
             height={120}
           />
@@ -23,7 +23,7 @@ const certificaciones = () => {
         <div className={styles.contenedorCertificaciones}>
           <Image
             src="/logo-nfpa.svg"
-            alt="Logo certificación nfpa"
+            alt="Logo certificación NFPA"
             width={120}
             height={120}
           />
@@ -31,17 +31,16 @@ const certificaciones = () => {
         <div className={styles.contenedorCertificaciones}>
           <Image
             src="/logo 3.svg"
-            alt="Logo certificación cemera"
+            alt="Logo certificación CEMERA"
             className={styles.celularImagen}
             width={120}
             height={120}
           />
         </div>
       </div>
-
       <Footer></Footer>
     </Layout>
   );
 };
 
-export default certificaciones;
+export default Certificaciones;

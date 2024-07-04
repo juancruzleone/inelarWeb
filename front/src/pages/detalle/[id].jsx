@@ -28,7 +28,7 @@ const DetalleProducto = ({ initialProducto, initialProductosRelacionados }) => {
 
           const fetchedProductosRelacionados = fetchedProductos
             .filter(p => p.categoria === fetchedProducto.categoria && p._id !== id)
-            .slice(0, 3); // Mostramos solo 3 productos relacionados
+            .slice(0, 3); 
 
           setProducto(fetchedProducto);
           setProductosRelacionados(fetchedProductosRelacionados);
@@ -158,7 +158,7 @@ export async function getServerSideProps(context) {
 
     const productosRelacionados = productos
       .filter(p => p.categoria === producto.categoria && p._id !== id)
-      .slice(0, 3); // Mostramos solo 3 productos relacionados
+      .slice(0, 3); 
 
     return {
       props: {

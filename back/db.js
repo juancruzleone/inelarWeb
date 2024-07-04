@@ -1,4 +1,3 @@
-// db.js
 import { MongoClient } from 'mongodb';
 
 const client = new MongoClient('mongodb+srv://juan:juan123@proyectoinelar.2eadspu.mongodb.net/');

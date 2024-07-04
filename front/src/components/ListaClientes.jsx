@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Modal from "react-modal";
 import styles from "@/styles/Home.module.css";
 
-// Configurar react-modal
 Modal.setAppElement("#__next");
 
 const ListaClientes = () => {
@@ -37,13 +36,11 @@ const ListaClientes = () => {
 
       setClientes(data);
 
-      // Obtener las categorías únicas de los clientes, excluyendo "Sin Categoría"
       const categoriasUnicas = Array.from(
         new Set(data.map((cliente) => cliente.category))
       ).filter(categoria => categoria !== undefined && categoria !== "");
       setCategorias(categoriasUnicas);
       
-      // Inicializar clientesFiltrados con la lista completa de clientes
       setClientesFiltrados(data);
     } catch (error) {
       console.error("Error al obtener clientes:", error);
@@ -115,7 +112,7 @@ const ListaClientes = () => {
       setClientes([...clientes, createdCliente]);
       handleCerrarModal();
       mostrarConfirmacion("Cliente creado exitosamente");
-      obtenerClientes(); // Actualizar lista de clientes después de la creación
+      obtenerClientes(); 
     } catch (error) {
       console.error("Error al crear cliente:", error);
     }
@@ -137,7 +134,7 @@ const ListaClientes = () => {
       }
       handleCerrarModal();
       mostrarConfirmacion("Cliente editado exitosamente");
-      obtenerClientes(); // Actualizar lista de clientes después de la edición
+      obtenerClientes(); 
     } catch (error) {
       console.error("Error al editar cliente:", error);
     }
@@ -154,7 +151,7 @@ const ListaClientes = () => {
       }
       handleCerrarModal();
       mostrarConfirmacion("Cliente eliminado exitosamente");
-      obtenerClientes(); // Actualizar lista de clientes después de la eliminación
+      obtenerClientes(); 
     } catch (error) {
       console.error("Error al eliminar cliente:", error);
     }
@@ -182,7 +179,6 @@ const ListaClientes = () => {
         />
         <div className={styles.posicionSeccionProductos}>
           <div className={styles.contenedorCategorias}>
-            {/* Lista de categorías como contenedores */}
             {categorias.map((categoria, index) => (
               <div
                 key={index}
@@ -198,7 +194,6 @@ const ListaClientes = () => {
             ))}
           </div>
 
-          {/* Lista de clientes filtrada por categoría y búsqueda */}
           <div className={styles.contenedorClientes}>
             {loading ? (
               <p>Cargando clientes...</p>
@@ -206,7 +201,7 @@ const ListaClientes = () => {
               clientesFiltrados.map((cliente, index) => (
                 <div key={index} className={styles.tarjetaProductoPanelClientes}>
                   <h3>{cliente.name}</h3>
-                  <div>
+                  <div className={styles.contenedorBotonesClientes}>
                     <button onClick={() => handleEditarCliente(cliente)} className={styles.botonEditar}>
                       <Image src="/editar.svg" alt="Editar" width={10} height={10} />
                     </button>
@@ -221,7 +216,6 @@ const ListaClientes = () => {
         </div>
       </div>
 
-      {/* Modal Crear */}
       <Modal
         isOpen={modalCrear}
         onRequestClose={handleCerrarModal}
@@ -251,7 +245,6 @@ const ListaClientes = () => {
         </form>
       </Modal>
 
-      {/* Modal Editar */}
       <Modal
         isOpen={modalEditar}
         onRequestClose={handleCerrarModal}
@@ -283,7 +276,6 @@ const ListaClientes = () => {
         )}
       </Modal>
 
-      {/* Modal Eliminar */}
       <Modal
         isOpen={modalEliminar}
         onRequestClose={handleCerrarModal}
@@ -303,7 +295,6 @@ const ListaClientes = () => {
         )}
       </Modal>
 
-      {/* Modal Confirmación */}
       <Modal
         isOpen={modalConfirmacion}
         contentLabel="Confirmación"

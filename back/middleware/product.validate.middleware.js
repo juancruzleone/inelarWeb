@@ -1,4 +1,4 @@
-import { productoSchemaCreate, productoSchemaPatch } from '../schemas/producto.schema.js';
+import { productoSchemaCreate, productoSchemaPatch } from '../schemas/product.schema.js';
 
 function validateProducto(req, res, next) {
   productoSchemaCreate.validate(req.body, { abortEarly: false })

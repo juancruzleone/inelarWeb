@@ -1,4 +1,4 @@
-import { clienteSchemaCreate, clienteSchemaPatch } from '../schemas/clientes.schema.js';
+import { clienteSchemaCreate, clienteSchemaPatch } from '../schemas/client.schema.js';
 
 function validateCliente(req, res, next) {
     clienteSchemaCreate.validate(req.body, { abortEarly: false })

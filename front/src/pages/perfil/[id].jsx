@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Modal from 'react-modal';
 import styles from "@/styles/Home.module.css";
 
-const Perfil = () => {
+const Profile = () => {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -30,11 +30,9 @@ const Perfil = () => {
         }
         setUser(parsedUserData.cuenta);
 
-        // Fetch all orders
         const response = await fetch(`http://localhost:2023/api/orders`);
         const data = await response.json();
 
-        // Filter orders for the current user
         const userOrders = data.filter(order => order.userId === id);
         setOrders(userOrders);
       } catch (error) {
@@ -160,4 +158,4 @@ const Perfil = () => {
   );
 };
 
-export default Perfil;
+export default Profile;

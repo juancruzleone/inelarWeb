@@ -3,7 +3,7 @@ import { MongoClient, ObjectId } from "mongodb";
 const client = new MongoClient('mongodb+srv://juan:juan123@proyectoinelar.2eadspu.mongodb.net/');
 const db = client.db("inelar");
 
-async function getProductos(filter = {}) {
+async function getProducts(filter = {}) {
   const filterMongo = { eliminado: { $ne: true } };
 
   if (filter.min && filter.max) {
@@ -28,36 +28,36 @@ async function getProductos(filter = {}) {
     .toArray();
 }
 
-async function getProductobyId(id) {
+async function getProductbyId(id) {
   return db.collection("productos").findOne({ _id: new ObjectId(id) });
 }
 
-const createProducto = async (producto) => {
+const addProduct = async (producto) => {
   const result = await db.collection("productos").insertOne(producto);
   producto._id = result.insertedId;
   return producto;
 };
 
-const remplazarProducto = async (id, producto) => {
+const putProduct = async (id, producto) => {
   const result = await db.collection("productos").replaceOne({ _id: new ObjectId(id) }, producto);
   return result;
 };
 
-const editProducto = async (id, producto) => {
+const editProduct = async (id, producto) => {
   const result = await db.collection("productos").updateOne({ _id: new ObjectId(id) }, { $set: producto });
   return result;
 };
 
-const eliminarProducto = async (id) => {
+const deleteProduct = async (id) => {
   const result = await db.collection("productos").deleteOne({ _id: new ObjectId(id) });
   return result;
 };
 
 export {
-  getProductos,
-  getProductobyId,
-  createProducto,
-  remplazarProducto,
-  eliminarProducto,
-  editProducto
+  getProducts,
+  getProductbyId,
+  addProduct,
+  putProduct,
+  deleteProduct,
+  editProduct
 };

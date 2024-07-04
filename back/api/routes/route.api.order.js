@@ -3,6 +3,6 @@ import { getAllOrders } from '../controllers/controller.api.order.js';
 
 const router = Router();
 
-router.get('/orders', getAllOrders); // Obtener todas las órdenes
+router.get('/orders', getAllOrders); 
 
 export default router;

@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link';
+import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
@@ -9,7 +9,6 @@ const Servicios = () => {
   return (
     <Layout>
       <h1 className={styles.tituloPaginas}>Servicios</h1>
-      {/*No se si va este texto (h2)*/}
       <h2 className={styles.subtituloServicio}>
         Los servicios se brindan en toda la Argentina
       </h2>
@@ -25,13 +24,13 @@ const Servicios = () => {
             />
           </Link>
           <h3 className={styles.tituloCardServicio}>Instalaciones</h3>
-          <p className={styles.descripciónServicio}></p>
+          <p className={styles.descripcionServicio}></p>
           <Link href="/instalaciones" className={styles.botonCardServicio}>
             Ver más
           </Link>
         </div>
         <div className={styles.cardServicios}>
-          <Link href='/mantenimientos'>
+          <Link href="/mantenimientos">
             <Image
               src="/mantenimiento.svg"
               alt="icono mantenimiento"
@@ -39,9 +38,9 @@ const Servicios = () => {
               width={140}
               height={140}
             />
-          </Link>  
+          </Link>
           <h3 className={styles.tituloCardServicio}>Mantenimientos</h3>
-          <p className={styles.descripciónServicio}></p>
+          <p className={styles.descripcionServicio}></p>
           <Link href="/mantenimientos" className={styles.botonCardServicio}>
             Ver más
           </Link>
@@ -50,14 +49,14 @@ const Servicios = () => {
           <Link href="/serviciotecnico">
             <Image
               src="/servicio-tecnico.svg"
-              alt="icono servicio tecnico"
+              alt="icono servicio técnico"
               className={styles.iconoServiciosCard}
               width={140}
               height={140}
             />
           </Link>
           <h3 className={styles.tituloCardServicio}>Servicio técnico</h3>
-          <p className={styles.descripciónServicio}></p>
+          <p className={styles.descripcionServicio}></p>
           <Link href="/serviciotecnico" className={styles.botonCardServicio}>
             Ver más
           </Link>
@@ -73,14 +72,13 @@ const Servicios = () => {
             />
           </Link>
           <h3 className={styles.tituloCardServicio}>Provisiones</h3>
-          <p className={styles.descripciónServicio}></p>
+          <p className={styles.descripcionServicio}></p>
           <Link href="/provisiones" className={styles.botonCardServicio}>
             Ver más
           </Link>
         </div>
       </div>
       <Footer></Footer>
-      {/* Ver si es mejor cargar todo el contenido en array y despues recorrerlo */}
     </Layout>
   );
 };

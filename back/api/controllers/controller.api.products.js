@@ -1,16 +1,16 @@
-import * as service from "../../services/productos.services.js";
+import * as service from "../../services/products.services.js";
 
-const getProductos = (req, res) => {
+const getProducts = (req, res) => {
   const filter = req.query;
 
-  service.getProductos(filter).then((productos) => {
+  service.getProducts(filter).then((productos) => {
     res.status(200).json(productos);
   });
 };
 
-const getProductoById = (req, res) => {
+const getProductById = (req, res) => {
   const id = req.params.id;
-  service.getProductobyId(id).then((producto) => {
+  service.getProductbyId(id).then((producto) => {
     if (producto) {
       res.status(200).json(producto);
     } else {
@@ -19,26 +19,26 @@ const getProductoById = (req, res) => {
   });
 };
 
-const agregarProducto = async (req, res) => {
+const addProduct = async (req, res) => {
   try {
     const producto = { ...req.body, imagen: `/${req.file.filename}` };
-    const productoNuevo = await service.createProducto(producto);
-    res.status(201).json(productoNuevo);
+    const newProduct = await service.addProduct(producto);
+    res.status(201).json(newProduct);
   } catch (error) {
     console.error('Error al agregar producto:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
-const remplazarProducto = async (req, res) => {
+const putProduct = async (req, res) => {
   try {
     const id = req.params.id;
     const producto = { ...req.body };
     if (req.file) {
       producto.imagen = `/${req.file.filename}`;
     }
-    const productoEditado = await service.remplazarProducto(id, producto);
-    if (productoEditado.modifiedCount > 0) {
+    const editedProduct = await service.remplazarProducto(id, producto);
+    if (editedProduct.modifiedCount > 0) {
       res.status(200).json(producto);
     } else {
       res.status(404).json();
@@ -49,15 +49,15 @@ const remplazarProducto = async (req, res) => {
   }
 };
 
-const actualizarProducto = async (req, res) => {
+const patchProduct = async (req, res) => {
   try {
     const id = req.params.id;
     const producto = { ...req.body };
     if (req.file) {
       producto.imagen = `/${req.file.filename}`;
     }
-    const productoEditado = await service.editProducto(id, producto);
-    if (productoEditado.modifiedCount > 0) {
+    const editedProduct = await service.editProducto(id, producto);
+    if (editedProduct.modifiedCount > 0) {
       res.status(200).json(producto);
     } else {
       res.status(404).json();
@@ -68,9 +68,9 @@ const actualizarProducto = async (req, res) => {
   }
 };
 
-const eliminarProducto = (req, res) => {
+const deleteProduct = (req, res) => {
   const id = req.params.id;
-  service.eliminarProducto(id)
+  service.deleteProduct(id)
     .then(() => {
       res.status(204).json();
     })
@@ -81,10 +81,10 @@ const eliminarProducto = (req, res) => {
 };
 
 export {
-  getProductos,
-  getProductoById,
-  agregarProducto,
-  actualizarProducto,
-  remplazarProducto,
-  eliminarProducto,
+  getProducts,
+  getProductById,
+  addProduct,
+  putProduct,
+  patchProduct,
+  deleteProduct,
 };

@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
 
-const servicioTecnico = () => {
+const ServicioTecnico = () => {
   return (
     <Layout>
       <h1 className={styles.tituloServicio}>Servicio técnico</h1>
@@ -29,4 +29,4 @@ const servicioTecnico = () => {
   );
 };
 
-export default servicioTecnico;
+export default ServicioTecnico;

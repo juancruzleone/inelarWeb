@@ -1,4 +1,3 @@
-// service.validate.middleware.js
 import * as yup from 'yup';
 
 const validateService = async (req, res, next) => {
@@ -12,14 +11,11 @@ const validateService = async (req, res, next) => {
       category: yup.string().required('La categoría es obligatoria'),
     });
 
-    // Validar la solicitud contra el esquema común
     await commonSchema.validate(req.body, { abortEarly: false });
 
-    // Validar la categoría específica
     const categorySchema = yup.string().oneOf(['mantenimiento', 'tecnico', 'instalaciones', 'provisiones']).required();
     await categorySchema.validate(req.body.category);
 
-    // Validar el campo específico para el servicio de provisiones
     if (req.body.category === 'provisiones') {
       const provisionSchema = yup.object().shape({
         dispositivo: yup.string().required("Selecciona un dispositivo"),
@@ -29,10 +25,8 @@ const validateService = async (req, res, next) => {
       await provisionSchema.validate(req.body, { abortEarly: false });
     }
 
-    // Llamar a la siguiente función en la cadena de middleware
     next();
   } catch (error) {
-    // Capturar errores de validación
     return res.status(400).json({ error: error.message });
   }
 };
