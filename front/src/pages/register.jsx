@@ -20,31 +20,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username && !password) {
-      setError("Ingrese ambos campos para registrarse.");
-      return;
-    }
-
-    if (!username) {
-      setError("Por favor, ingresa un nombre de usuario.");
-      return;
-    }
-
-    if (!password) {
-      setError("Por favor, ingresa una contraseña.");
-      return;
-    }
-
-    if (username.length < 6) {
-      setError("El nombre de usuario debe tener al menos 6 caracteres.");
-      return;
-    }
-
-    if (password.length < 6) {
-      setError("La contraseña debe tener al menos 6 caracteres.");
-      return;
-    }
-
     try {
       const response = await fetch("http://localhost:2023/api/cuenta", {
         method: "POST",
