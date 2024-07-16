@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Head from 'next/head';
 import styles from "@/styles/Home.module.css";
 
 const Layout = ({ children }) => {
@@ -29,91 +30,98 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <main>
-      <nav className={styles.nav}>
-        <Link href="/" className={styles.seccionesNav}>
-          Home
-        </Link>
-        <Link href="/quienes-somos" className={styles.seccionesNav}>
-          Quiénes somos
-        </Link>
-        <Link href="/servicios" className={styles.seccionesNav}>
-          Servicios
-        </Link>
-        <Link href="/productos" className={styles.seccionesNav}>
-          Productos
-        </Link>
-        <Link href="/preguntas-frecuentes" className={styles.seccionesNav}>
-          Preguntas frecuentes
-        </Link>
-        <Link href="/certificaciones" className={styles.seccionesNav}>
-          Certificaciones
-        </Link>
-        <Link href="/contacto" className={styles.seccionesNav}>
-          Contacto
-        </Link>
-        {isAdmin && (
-          <Link href="/panel" className={styles.seccionesNav}>
-            Panel admin
+    <>
+      <Head>
+        <title>Mi Aplicación</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main>
+        <nav className={styles.nav}>
+          <Link href="/" className={styles.seccionesNav}>
+            Home
           </Link>
-        )}
-        {isLoggedIn ? (
-          <>
-            <Link href={`/perfil/${userId}`} className={styles.sesion} id={styles.sesion}>
-              <Image
-                src="/prelogin.svg"
-                alt="Perfil de usuario"
-                className={styles.carrito}
-                width={40}
-                height={40}
-              />
+          <Link href="/quienes-somos" className={styles.seccionesNav}>
+            Quiénes somos
+          </Link>
+          <Link href="/servicios" className={styles.seccionesNav}>
+            Servicios
+          </Link>
+          <Link href="/productos" className={styles.seccionesNav}>
+            Productos
+          </Link>
+          <Link href="/preguntas-frecuentes" className={styles.seccionesNav}>
+            Preguntas frecuentes
+          </Link>
+          <Link href="/certificaciones" className={styles.seccionesNav}>
+            Certificaciones
+          </Link>
+          <Link href="/contacto" className={styles.seccionesNav}>
+            Contacto
+          </Link>
+          {isAdmin && (
+            <Link href="/panel" className={styles.seccionesNav}>
+              Panel admin
             </Link>
-            <a href="/carrito" className={styles.carrito}>
-              <Image
-                src="/carrito.svg"
-                alt="Carrito"
-                className={styles.carrito}
-                id={styles.iconoCarrito}
-                width={40}
-                height={40}
-              />
-            </a>
-            <button onClick={handleLogout} className={`${styles.sesion} ${styles.logoutButton}`} id={styles.cerrarSesion}>
-              <Image
-                src="/cerrar-sesion.svg"
-                alt="Cerrar sesión"
-                className={styles.logoutIcon}
-                width={40}
-                height={40}
-              />
-            </button>
-          </>
-        ) : (
-          <>
-            <a href="/login" className={styles.sesion} id={styles.sesion}>
-              <Image
-                src="/prelogin.svg"
-                alt="Iniciar sesión"
-                className={styles.carrito}
-                width={40}
-                height={40}
-              />
-            </a>
-            <a href="/carrito" className={styles.carrito}>
-              <Image
-                src="/carrito.svg"
-                alt="Carrito"
-                className={styles.carrito}
-                id={styles.iconoCarrito}
-                width={40}
-                height={40}
-              />
-            </a>
-          </>
-        )}
-      </nav>
-      {children}
-    </main>
+          )}
+          {isLoggedIn ? (
+            <>
+              <Link href={`/perfil/${userId}`} className={styles.sesion} id={styles.sesion}>
+                <Image
+                  src="/prelogin.svg"
+                  alt="Perfil de usuario"
+                  className={styles.carrito}
+                  width={40}
+                  height={40}
+                />
+              </Link>
+              <a href="/carrito" className={styles.carrito}>
+                <Image
+                  src="/carrito.svg"
+                  alt="Carrito"
+                  className={styles.carrito}
+                  id={styles.iconoCarrito}
+                  width={40}
+                  height={40}
+                />
+              </a>
+              <button onClick={handleLogout} className={`${styles.sesion} ${styles.logoutButton}`} id={styles.cerrarSesion}>
+                <Image
+                  src="/cerrar-sesion.svg"
+                  alt="Cerrar sesión"
+                  className={styles.logoutIcon}
+                  width={40}
+                  height={40}
+                />
+              </button>
+            </>
+          ) : (
+            <>
+              <a href="/login" className={styles.sesion} id={styles.sesion}>
+                <Image
+                  src="/prelogin.svg"
+                  alt="Iniciar sesión"
+                  className={styles.carrito}
+                  width={40}
+                  height={40}
+                />
+              </a>
+              <a href="/carrito" className={styles.carrito}>
+                <Image
+                  src="/carrito.svg"
+                  alt="Carrito"
+                  className={styles.carrito}
+                  id={styles.iconoCarrito}
+                  width={40}
+                  height={40}
+                />
+              </a>
+            </>
+          )}
+        </nav>
+        {children}
+      </main>
+    </>
   );
 };
 

@@ -54,7 +54,7 @@ const ListaServicios = () => {
 
   return (
     <>
-      <h1 className={styles.tituloPaginasPanel}>Servicios</h1>
+      <h2 className={styles.tituloPaginasPanel}>Servicios</h2>
       <div className={styles.posicionSeccionProductos}>
         <div className={styles.contenedorCategorias}>
           {categories.map((category, index) => (

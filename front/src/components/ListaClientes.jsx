@@ -168,7 +168,7 @@ const ListaClientes = () => {
   return (
     <div>
       <div className={styles.contenedorPagina}>
-        <h1 className={styles.tituloPaginasPanel}>Clientes</h1>
+        <h2 className={styles.tituloPaginasPanel}>Clientes</h2>
         <button onClick={handleCrearCliente} className={styles.botonCrearModal}>Crear cliente</button>
         <input
           type="text"

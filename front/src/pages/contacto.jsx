@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Head from 'next/head';
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import Modal from "react-modal";
@@ -70,6 +71,11 @@ const Contacto = () => {
 
   return (
     <Layout className={styles.app}>
+      <Head>
+        <title>Contacto | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1 className={styles.tituloPaginas}>Contacto</h1>
       <div className={styles.posicionContacto}>
         <div className={styles.contenedorMapa}>

@@ -1,45 +1,43 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import Carrousel from "@/components/Carrousel";
 import styles from "@/styles/Home.module.css";
 
-
-
-
 const Home = () => {
   return (
     <Layout>
-      {/*Ordenar mejor el codigo de nuestra App, para que el titulo quede en el mismo contenedor que el parrafo y haga display flex con el circulo y la imagen*/}
+      <Head>
+        <title>Inicio | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.tituloHome}>
         <Image
-            src="/logo elegido.svg"
-            alt="Logo inelar"
-            className={styles.fotoServicio}
-            width={300}
-            height={300}
-          />
-          <h2>solución en prevención y combate de incendios</h2>
-          {
-          <div className={styles.contenedorFlecha}> 
-            <a href="#nuestraApp">
-              <Image
-                src="/flecha-abajo.svg"
-                alt="flecha hacia abajo"
-                className={styles.flechaAbajo}
-                width={70}
-                height={70}
-              />
-            </a>
-          </div>
-          }
-          
-
+          src="/logo elegido.svg"
+          alt="Logo inelar"
+          className={styles.fotoServicio}
+          width={300}
+          height={300}
+        />
+        <h1>solución en prevención y combate de incendios</h1>
+        <div className={styles.contenedorFlecha}>
+          <a href="#nuestraApp">
+            <Image
+              src="/flecha-abajo.svg"
+              alt="flecha hacia abajo"
+              className={styles.flechaAbajo}
+              width={70}
+              height={70}
+            />
+          </a>
+        </div>
       </div>
 
-      <div className={styles.contenedorNuestraApp} id={styles.nuestraApp}>
+      <div className={styles.contenedorNuestraApp} id="nuestraApp">
         <div className={styles.circulo}>
           <div className={styles.celularApp}>
             <Image
@@ -59,7 +57,7 @@ const Home = () => {
             en la simplicidad de mantener tus dispositivos siempre en óptimas
             condiciones.
           </p>
-          <br></br>
+          <br />
           <p>
             Nuestra App es tu solución para un mantenimiento rápido y efectivo.
             Imagina tener el control total de tus dispositivos con tan solo un
@@ -76,7 +74,7 @@ const Home = () => {
             <Link href='/instalaciones'>
               <h3 className={styles.nombreServicios}>Instalaciones</h3>
             </Link>
-            <a href="/instalaciones">
+            <Link href="/instalaciones">
               <Image
                 src="/instalaciones.svg"
                 alt="icono detector"
@@ -84,13 +82,13 @@ const Home = () => {
                 width={140}
                 height={140}
               />
-            </a>
+            </Link>
           </div>
           <div className={styles.cajaServicios}>
             <Link href='/mantenimientos'>
               <h3 className={styles.nombreServicios}>Mantenimientos</h3>
             </Link>
-            <a href="/mantenimientos">
+            <Link href="/mantenimientos">
               <Image
                 src="/mantenimiento.svg"
                 alt="icono mantenimientos"
@@ -98,13 +96,13 @@ const Home = () => {
                 width={140}
                 height={140}
               />
-            </a>
+            </Link>
           </div>
           <div className={styles.cajaServicios}>
             <Link href='/serviciotecnico'>
               <h3 className={styles.nombreServicios}>Servicio técnico</h3>
             </Link>
-            <a href="/serviciotecnico">
+            <Link href="/serviciotecnico">
               <Image
                 src="/servicio-tecnico.svg"
                 alt="icono servicio técnico"
@@ -112,7 +110,7 @@ const Home = () => {
                 width={140}
                 height={140}
               />
-            </a>
+            </Link>
           </div>
           <div className={styles.cajaServicios}>
             <Link href='/provisiones'>
@@ -130,14 +128,15 @@ const Home = () => {
           </div>
         </div>
       </div>
+
       <div className={styles.contenedorObras}>
         <h2 className={styles.subtitulos}>Obras</h2>
         <div className={styles.contenedorCarrousel}>
           <Carrousel />
         </div>
-        
       </div>
-      <Footer></Footer>
+      
+      <Footer />
     </Layout>
   );
 };

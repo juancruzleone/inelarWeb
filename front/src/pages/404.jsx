@@ -1,12 +1,18 @@
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head'
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 
 const Custom404 = () => {
     return(
         <Layout>
+            <Head>
+                <title>Error 404 | Inelar</title>
+                <meta name="description" content="Descripción de mi aplicación" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <section className='contenedor404'>
                 <h1 className='titulo404'>Código 404</h1>
                 <p className='texto404'>Página no encontrada</p>

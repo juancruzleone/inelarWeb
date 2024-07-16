@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
@@ -66,6 +67,11 @@ const PreguntasFrecuentes = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Preguntas frecuentes | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1 className={styles.tituloPaginas}>Preguntas frecuentes</h1>
       <div className={styles.posicionPreguntasFrecuentes}>
         {questionsAnswers.map((item, index) => (

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import Modal from "react-modal";
 import Link from "next/link";
 import Layout from "@/components/Layout";
@@ -41,13 +42,28 @@ const Register = () => {
         return;
       }
 
-      const data = await response.json();
-      console.log(data);
+      // Automatic login after successful registration
+      const loginResponse = await fetch("http://localhost:2023/api/cuenta/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userName: username, password }),
+      });
 
-      const { token } = data;
-      localStorage.setItem("token", token);
+      if (!loginResponse.ok) {
+        const loginErrorData = await loginResponse.json();
+        setError(`Error en el inicio de sesión: ${loginErrorData.error.message}`);
+        return;
+      }
+
+      const loginData = await loginResponse.json();
+      console.log("Login response data:", loginData);
+
+      localStorage.setItem("userData", JSON.stringify(loginData));
 
       router.push("/");
+
     } catch (error) {
       setError("Error de red");
     }
@@ -59,6 +75,11 @@ const Register = () => {
 
   return (
     <Layout className={styles.app}>
+      <Head>
+        <title>Registro | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.contenedorPrelogin}>
         <div className={styles.formularioPrelogin}>
           <h1 className={styles.tituloPrelogin}>Regístrate</h1>
@@ -101,17 +122,6 @@ const Register = () => {
           </form>
         </div>
       </div>
-
-      <Modal
-        isOpen={showModal}
-        onRequestClose={() => setShowModal(false)}
-        contentLabel="Cuenta creada exitosamente"
-        className={styles.Modal}
-      >
-        <p>Cuenta creada exitosamente</p>
-        <Link href="/login">Iniciar sesión</Link>
-        <button onClick={() => setShowModal(false)}>❌</button>
-      </Modal>
 
       <Footer />
     </Layout>

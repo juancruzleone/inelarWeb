@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
@@ -75,6 +76,11 @@ const SolicitarServicioTecnico = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Solicitar servicio técnico | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1 className={styles.tituloSolicitudServicio}>Solicitar servicio técnico</h1>
       <div className={styles.contenedorContenidoServicio}>
         <p className={styles.textoSolicitudServicios}>

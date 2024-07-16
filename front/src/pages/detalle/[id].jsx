@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from "next/head";
 import Image from 'next/image';
 import Layout from '@/components/Layout';
 import Footer from '@/components/Footer';
@@ -85,6 +86,11 @@ const DetalleProducto = ({ initialProducto, initialProductosRelacionados }) => {
 
   return (
     <Layout className={styles.app}>
+      <Head>
+        <title>Detalle del producto | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.contenedorDetalleProducto}>
         <div className={styles.contenedorProducto}>
           <Image

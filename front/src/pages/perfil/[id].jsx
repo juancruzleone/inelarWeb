@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import Modal from 'react-modal';
@@ -97,6 +98,11 @@ const Profile = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Perfil de usuario | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.contenedorPerfilUsuario}>
         <div className={styles.contenidoPerfilUsuario}>
           <h1>Perfil de {user.userName}</h1>

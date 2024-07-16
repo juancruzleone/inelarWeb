@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Head from 'next/head';
 import Layout from '@/components/Layout';
 import Footer from '@/components/Footer';
 import styles from '@/styles/Home.module.css';
@@ -76,6 +77,11 @@ const Cart = () => {
 
   return (
     <Layout className={styles.app}>
+      <Head>
+        <title>Carrito | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1 className={styles.tituloPaginas}>Carrito</h1>
       <div className={`${styles.contenedorSeccionCarrito} ${cart.length === 0 ? styles.contenedorSeccionCarritoVacio : ''}`}>
         <div className={`${styles.contenedorCarrito} ${cart.length === 0 ? styles.contenedorCarritoVacio : ''}`}>
@@ -97,7 +103,7 @@ const Cart = () => {
                   <div>
                     <p className={styles.nombreProductoCarrito}>{producto.nombre}</p>
                     <p className={styles.categoriaProductoCarrito}>{producto.categoria}</p>
-                    <p>{producto.precio}</p>
+                    <p>${producto.precio}</p>
                   </div>
                   <div className={styles.unidadesProductoCarrito}>
                     <p><span>Unidades:</span>{producto.unidades}</p>

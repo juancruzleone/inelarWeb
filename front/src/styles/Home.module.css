@@ -279,7 +279,7 @@
   margin-top: 20px;
 }
 
-.tituloHome h2{
+.tituloHome h1{
   margin-top: -40px;
   color: #f9bf79;
   font-weight: 500;
@@ -1739,9 +1739,11 @@
 }
 
 .registroLogin{
-  color: blue;
+  color: white;
+  font-weight: bold;
   text-decoration: underline;
   margin-left: 10px;
+  font-size: 18px;
 }
 
 .botonAgregarCarrito{

@@ -26,7 +26,7 @@ const ListaMensajes = () => {
   return (
     <div className={styles.app}>
       <div className={styles.contenedorPagina}>
-        <h1 className={styles.tituloPaginasPanel}>Mensajes</h1>
+        <h2 className={styles.tituloPaginasPanel}>Mensajes</h2>
         <div className={styles.posicionSeccionProductos}>
           <div className={styles.contenedorProductosPanel}>
             {loading ? (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
@@ -38,6 +39,11 @@ const Productos = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Productos | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.contenedorPagina}>
         <h1 className={styles.tituloPaginas}>Productos</h1>
         <div className={styles.posicionSeccionProductos}>

@@ -187,7 +187,7 @@ const ListaProductos = () => {
   return (
     <div>
       <div className={styles.contenedorPagina}>
-        <h1 className={styles.tituloPaginasPanel}>Productos</h1>
+        <h2 className={styles.tituloPaginasPanel}>Productos</h2>
         <button onClick={handleCreateProduct} className={styles.botonCrearModal}>Crear Producto</button>
         <input
           type="text"

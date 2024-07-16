@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import PanelNav from "@/components/navpanel";
@@ -34,6 +35,11 @@ const PanelAdmin = () => {
 
   return (
     <Layout className={styles.app}>
+      <Head>
+        <title>Panel admin | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1 className={styles.tituloPanel}>Panel admin</h1>
       <div className={styles.contenedorPanelAdmin}>
         <div className={styles.posicionMenuPanel}>

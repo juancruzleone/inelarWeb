@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head"
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
@@ -6,6 +7,11 @@ import styles from "@/styles/Home.module.css";
 const SobreNosotros = () => {
   return (
     <Layout>
+      <Head>
+        <title>Quiénes somos | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1 className={styles.tituloPaginas} id={styles.quienesSomos}>Quiénes somos</h1>
       <section className={styles.seccion}>
         <div className={styles.contenido}>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
@@ -58,6 +59,11 @@ const Login = () => {
 
   return (
     <Layout className={styles.app}>
+      <Head>
+        <title>Inicio sesión | Inelar</title>
+        <meta name="description" content="Descripción de mi aplicación" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.contenedorPrelogin}>
         <div className={styles.formularioPrelogin}>
           <h1 className={styles.tituloPrelogin}>Inicia sesión</h1>
