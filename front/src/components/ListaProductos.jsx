@@ -234,7 +234,7 @@ const ListaProductos = () => {
         isOpen={createModal}
         onRequestClose={handleCloseModal}
         contentLabel="Crear Producto"
-        className={`${styles.ModalPanel} ${styles.Modal}`}
+        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
         closeTimeoutMS={500}
       >
         <h2>Crear Producto</h2>
@@ -340,6 +340,22 @@ const ListaProductos = () => {
             onChange={handleChange}
             required
           />
+          <label htmlFor="image">Imagen actual:</label>
+          {selectedProduct?.imagen && (
+            <div>
+              <Image
+                src={
+                  selectedProduct.imagen instanceof File
+                    ? URL.createObjectURL(selectedProduct.imagen)
+                    : selectedProduct.imagen
+                }
+                alt="Producto"
+                className={styles.imagenProductoEditar}
+                width={80} 
+                height={50} 
+              />
+            </div>
+          )}
           <label htmlFor="image">Imagen:</label>
           <input
             type="file"

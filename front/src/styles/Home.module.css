@@ -1119,6 +1119,14 @@
   min-height: 80px;
 }
 
+.imagenProductoEditar {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0px;
+  min-height: 80px;
+}
+
 .botonVerMas {
   font-family: "montserrat", sans-serif;
   display: inline-block;
@@ -1794,7 +1802,7 @@
 .Modal h2 {
   font-family: "montserrat", sans-serif;
   margin-top: 10px;
-  margin-bottom: auto;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1956,7 +1964,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     width: 400px;
-    height: 530px
+    height: 660px
   }
 
   .ModalPanel h2{
@@ -1983,6 +1991,50 @@
     margin-top: 5px;
     margin-bottom: 15px;
   }
+
+  .ModalPanelCrear{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    width: 400px;
+    height: 560px
+  }
+
+  .ModalPanelCrear h2{
+    margin-top: 20px;
+  }
+
+  .ModalPanelCrear input{
+    margin-bottom: 15px;
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .ModalPanelCrear button{
+    background-color: #C75F00;
+    border: 0px;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .ModalPanelCrear select{
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+
+
+  
 
   .ModalPanelClientes{
     display: flex;
@@ -2633,3 +2685,4 @@
 .contenedorBotonesClientes{
   display: flex;
 }
+
