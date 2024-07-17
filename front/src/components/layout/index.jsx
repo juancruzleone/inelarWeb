@@ -75,7 +75,7 @@ const Layout = ({ children }) => {
                   height={40}
                 />
               </Link>
-              <a href="/carrito" className={styles.carrito}>
+              <Link href="/carrito" className={styles.carrito}>
                 <Image
                   src="/carrito.svg"
                   alt="Carrito"
@@ -84,7 +84,7 @@ const Layout = ({ children }) => {
                   width={40}
                   height={40}
                 />
-              </a>
+              </Link>
               <button onClick={handleLogout} className={`${styles.sesion} ${styles.logoutButton}`} id={styles.cerrarSesion}>
                 <Image
                   src="/cerrar-sesion.svg"
@@ -97,7 +97,7 @@ const Layout = ({ children }) => {
             </>
           ) : (
             <>
-              <a href="/login" className={styles.sesion} id={styles.sesion}>
+              <Link href="/login" className={styles.sesion} id={styles.sesion}>
                 <Image
                   src="/prelogin.svg"
                   alt="Iniciar sesión"
@@ -105,8 +105,8 @@ const Layout = ({ children }) => {
                   width={40}
                   height={40}
                 />
-              </a>
-              <a href="/carrito" className={styles.carrito}>
+              </Link>
+              <Link href="/carrito" className={styles.carrito}>
                 <Image
                   src="/carrito.svg"
                   alt="Carrito"
@@ -115,7 +115,7 @@ const Layout = ({ children }) => {
                   width={40}
                   height={40}
                 />
-              </a>
+              </Link>
             </>
           )}
         </nav>

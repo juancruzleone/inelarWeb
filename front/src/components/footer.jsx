@@ -27,16 +27,16 @@ const Footer = () => {
             <h3 className={styles.footerHeading}>Servicios</h3>
             <ul className={styles.footerList}>
               <li className={styles.footerListItem}>
-                <a href="/instalaciones">Instalaciones</a>
+                <Link href="/instalaciones">Instalaciones</Link>
               </li>
               <li className={styles.footerListItem}>
-                <a href="/mantenimientos">Mantenimientos</a>
+                <Link href="/mantenimientos">Mantenimientos</Link>
               </li>
               <li className={styles.footerListItem}>
-                <a href="/serviciotecnico">Servicio técnico</a>
+                <Link href="/serviciotecnico">Servicio técnico</Link>
               </li>
               <li className={styles.footerListItem}>
-                <a href="/provisiones">Provisiones</a>
+                <Link href="/provisiones">Provisiones</Link>
               </li>
             </ul>
           </div>
@@ -44,13 +44,13 @@ const Footer = () => {
             <h3 className={styles.footerHeading}>Contacto</h3>
             <ul className={styles.footerList}>
               <li className={styles.footerListItem}>
-                <a href="/contacto">Formulario de Contacto</a>
+                <Link href="/contacto">Formulario de Contacto</Link>
               </li>
               <li className={styles.footerListItem}>
-                <a href="/telefono">Teléfono: +123-456-789</a>
+                <Link href="/telefono">Teléfono: +123-456-789</Link>
               </li>
               <li className={styles.footerListItem}>
-                <a href="/email">Email: info@inelar.com</a>
+                <Link href="/email">Email: info@inelar.com</Link>
               </li>
             </ul>
           </div>
