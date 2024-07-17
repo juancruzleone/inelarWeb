@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
       <main>
         <nav className={styles.nav}>
           <Link href="/" className={styles.seccionesNav}>
-            Home
+            Inicio
           </Link>
           <Link href="/quienes-somos" className={styles.seccionesNav}>
             Quiénes somos
