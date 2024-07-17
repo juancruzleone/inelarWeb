@@ -262,14 +262,13 @@ const ListaProductos = () => {
             ))}
           </select>
           <label htmlFor="description">Descripción:</label>
-          <input
-            type="text"
+          <textarea
             id="description"
             name="description"
             value={newProduct.description}
             onChange={handleChange}
             required
-          />
+          ></textarea>
           <label htmlFor="price">Precio:</label>
           <input
             type="number"
@@ -323,14 +322,13 @@ const ListaProductos = () => {
             ))}
           </select>
           <label htmlFor="description">Descripción:</label>
-          <input
-            type="text"
+          <textarea
             id="description"
             name="description"
             value={selectedProduct?.description || ""}
             onChange={handleChange}
             required
-          />
+          ></textarea>
           <label htmlFor="price">Precio:</label>
           <input
             type="number"
