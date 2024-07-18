@@ -3,6 +3,7 @@ import Head from "next/head";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
+import Modal from "react-modal";
 
 const SolicitarServicioTecnico = () => {
   const [formData, setFormData] = useState({
@@ -13,11 +14,12 @@ const SolicitarServicioTecnico = () => {
     problema: "",
     fecha: "",
     dispositivo: "",
-    cantidad: 1, 
-    category: "tecnico", 
+    cantidad: 1,
+    category: "tecnico",
   });
 
   const [productos, setProductos] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     const obtenerProductos = async () => {
@@ -62,8 +64,10 @@ const SolicitarServicioTecnico = () => {
       });
 
       if (res.ok) {
-        const data = await res.json();
-        alert("Solicitud enviada con éxito");
+        setModalIsOpen(true);
+        setTimeout(() => {
+          setModalIsOpen(false);
+        }, 1000);
       } else {
         const errorData = await res.json();
         alert(`Ocurrió un error al enviar la solicitud: ${errorData.message}`);
@@ -174,6 +178,14 @@ const SolicitarServicioTecnico = () => {
         </form>
       </div>
       <Footer />
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        className={styles.Modal}
+        contentLabel="Solicitud Enviada"
+      >
+        <h2>Solicitud enviada con éxito</h2>
+      </Modal>
     </Layout>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Head from 'next/head';
+import Head from "next/head";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import Modal from "react-modal";
