@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Head from 'next/head';
+import Modal from 'react-modal';
 import styles from "@/styles/Home.module.css";
 
 const Layout = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [logoutModalIsOpen, setLogoutModalIsOpen] = useState(false);
 
   useEffect(() => {
     const userData = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("userData")) : null;
@@ -25,17 +26,16 @@ const Layout = ({ children }) => {
     localStorage.removeItem("userData");
     setIsLoggedIn(false);
     setIsAdmin(false);
+    setLogoutModalIsOpen(true);
     
-    window.location.href = "/login";
+    setTimeout(() => {
+      window.location.href = "/login";
+    }, 2000); 
   };
 
   return (
     <>
-      <Head>
-        <title>Mi Aplicación</title>
-        <meta name="description" content="Descripción de mi aplicación" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+
       <main>
         <nav className={styles.nav}>
           <Link href="/" className={styles.seccionesNav}>
@@ -120,6 +120,14 @@ const Layout = ({ children }) => {
           )}
         </nav>
         {children}
+        <Modal
+          isOpen={logoutModalIsOpen}
+          className={styles.Modal}
+          onRequestClose={() => setLogoutModalIsOpen(false)}
+          contentLabel="Sesión cerrada"
+        >
+          <h2 className={styles.tituloModal}>Sesión cerrada exitosamente</h2>
+        </Modal>
       </main>
     </>
   );

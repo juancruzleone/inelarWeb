@@ -62,7 +62,12 @@ const Register = () => {
 
       localStorage.setItem("userData", JSON.stringify(loginData));
 
-      router.push("/");
+      setShowModal(true);
+
+      setTimeout(() => {
+        setShowModal(false);
+        router.push("/");
+      }, 2000); // Show modal for 2 seconds before redirecting
 
     } catch (error) {
       setError("Error de red");
@@ -124,6 +129,15 @@ const Register = () => {
       </div>
 
       <Footer />
+
+      <Modal
+        isOpen={showModal}
+        className={styles.Modal}
+        onRequestClose={() => setShowModal(false)}
+        contentLabel="Cuenta registrada"
+      >
+        <h2 className={styles.tituloModal}>Cuenta registrada exitosamente</h2>
+      </Modal>
     </Layout>
   );
 };

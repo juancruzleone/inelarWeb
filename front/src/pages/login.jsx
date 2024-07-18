@@ -4,13 +4,17 @@ import Head from "next/head";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
+import Modal from "react-modal";
 import styles from "@/styles/Home.module.css";
+
+Modal.setAppElement("#__next");
 
 const Login = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,11 +51,13 @@ const Login = () => {
 
       localStorage.setItem("userData", JSON.stringify(data));
 
-      if (data.cuenta.role === "admin") {
+      setShowModal(true);
+
+      setTimeout(() => {
+        setShowModal(false);
         router.push("/");
-      } else {
-        router.push("/");
-      }
+      }, 2000); // Show modal for 2 seconds before redirecting
+
     } catch (error) {
       setError("Error de red");
     }
@@ -104,6 +110,15 @@ const Login = () => {
         </div>
       </div>
       <Footer />
+
+      <Modal
+        isOpen={showModal}
+        className={styles.Modal}
+        onRequestClose={() => setShowModal(false)}
+        contentLabel="Inicio de sesión exitoso"
+      >
+        <h2 className={styles.tituloModal}>Inicio de sesión exitoso</h2>
+      </Modal>
     </Layout>
   );
 };
