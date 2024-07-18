@@ -13,6 +13,10 @@ const Cart = () => {
   const [cart, setCart] = useState([]);
   const [userData, setUserData] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [confirmModalIsOpen, setConfirmModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+  const [action, setAction] = useState(null);
+  const [selectedProductIndex, setSelectedProductIndex] = useState(null);
 
   useEffect(() => {
     const savedCart = Cookies.get('carrito') ? JSON.parse(Cookies.get('carrito')) : [];
@@ -25,14 +29,23 @@ const Cart = () => {
   }, []);
 
   const handleRemoveProduct = (index) => {
-    const newCart = [...cart];
-    if (newCart[index].unidades > 1) {
+    if (cart[index].unidades > 1) {
+      const newCart = [...cart];
       newCart[index].unidades -= 1;
+      setCart(newCart);
+      Cookies.set('carrito', JSON.stringify(newCart));
     } else {
-      newCart.splice(index, 1);
+      setSelectedProductIndex(index);
+      setDeleteModalIsOpen(true);
     }
+  };
+
+  const confirmRemoveProduct = () => {
+    const newCart = [...cart];
+    newCart.splice(selectedProductIndex, 1);
     setCart(newCart);
     Cookies.set('carrito', JSON.stringify(newCart));
+    setDeleteModalIsOpen(false);
   };
 
   const handleIncreaseUnits = (index) => {
@@ -43,8 +56,14 @@ const Cart = () => {
   };
 
   const handleEmptyCart = () => {
+    setAction('emptyCart');
+    setConfirmModalIsOpen(true);
+  };
+
+  const confirmEmptyCart = () => {
     setCart([]);
     Cookies.set('carrito', JSON.stringify([]));
+    setConfirmModalIsOpen(false);
   };
 
   const handleCheckout = async () => {
@@ -72,6 +91,12 @@ const Cart = () => {
       }
     } catch (error) {
       console.error('Error during checkout:', error);
+    }
+  };
+
+  const handleConfirmAction = () => {
+    if (action === 'emptyCart') {
+      confirmEmptyCart();
     }
   };
 
@@ -148,6 +173,38 @@ const Cart = () => {
         contentLabel="Debes iniciar sesión para proceder al checkout"
       >
         <h2 className={styles.tituloModalCheckout}>Tenés que iniciar sesión para ir al checkout</h2>
+      </Modal>
+      <Modal
+        isOpen={confirmModalIsOpen}
+        className={styles.Modal}
+        onRequestClose={() => setConfirmModalIsOpen(false)}
+        contentLabel="Confirmar acción"
+      >
+        <h2 className={styles.tituloModalConfirm}>¿Estás seguro de que quieres vaciar el carrito?</h2>
+        <div className={styles.contenedorBotonesModalVaciar}>
+          <button className={styles.botonConfirmar} onClick={handleConfirmAction}>
+            Confirmar
+          </button>
+          <button className={styles.botonCancelar} onClick={() => setConfirmModalIsOpen(false)}>
+            Cancelar
+          </button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={deleteModalIsOpen}
+        className={styles.Modal}
+        onRequestClose={() => setDeleteModalIsOpen(false)}
+        contentLabel="Confirmar eliminación"
+      >
+        <h2 className={styles.tituloModalConfirm}>¿Estás seguro de que quieres eliminar este producto? Es la última unidad</h2>
+        <div className={styles.contenedorBotonesModalVaciar}>
+          <button className={styles.botonConfirmar} onClick={confirmRemoveProduct}>
+            Confirmar
+          </button>
+          <button className={styles.botonCancelar} onClick={() => setDeleteModalIsOpen(false)}>
+            Cancelar
+          </button>
+        </div>
       </Modal>
     </Layout>
   );

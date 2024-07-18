@@ -756,6 +756,7 @@
   float: right;
   cursor: pointer;
   background-color: black;
+  color: white;
   border: none;
   outline: none;
   width: 30px;
@@ -1777,7 +1778,7 @@
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   z-index: 9999;
-  height: 140px;
+  height: 180px;
 }
 
 .Modal p{
@@ -2049,7 +2050,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     width: 400px;
-    height: 300px
+    height: 330px
   }
 
   .ModalPanelClientes h2{
@@ -2172,7 +2173,7 @@
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   z-index: 9999;
-  height: 165px
+  height: 180px
 }
 
 .ModalPanelEditar .botonEliminarProducto{
@@ -2684,5 +2685,32 @@
 
 .contenedorBotonesClientes{
   display: flex;
+}
+
+.contenedorBotonesModalVaciar{
+  display: flex;
+}
+
+.contenedorBotonesModalVaciar .botonConfirmar{
+  background-color: red;
+  padding: 6px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-family: "montserrat", sans-serif;
+  border: 0px;
+  cursor: pointer;
+  color: white;
+}
+
+
+.contenedorBotonesModalVaciar .botonCancelar{
+  background-color: blue;
+  padding: 6px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-family: "montserrat", sans-serif;
+  border: 0px;
+  cursor: pointer;
+  color: white;
 }
 
