@@ -1,6 +1,9 @@
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
-const client = new MongoClient('mongodb+srv://juan:juan123@proyectoinelar.2eadspu.mongodb.net/');
+dotenv.config();
+
+const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db("inelar");
 
 client.connect()

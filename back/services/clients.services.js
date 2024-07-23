@@ -1,47 +1,46 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { db } from '../db.js';
+import { ObjectId } from "mongodb";
 
-const client = new MongoClient('mongodb+srv://juan:juan123@proyectoinelar.2eadspu.mongodb.net/');
-await client.connect();
-const db = client.db("inelar");
+const clientsCollection = db.collection("clientes");
 
 async function getClients(filter = {}) {
-  const filterMongo = { eliminado: { $ne: true } };
-  return db.collection("clientes").find(filterMongo).toArray();
+    const filterMongo = { eliminado: { $ne: true } };
+    return clientsCollection.find(filterMongo).toArray();
 }
 
 async function getClientById(id) {
-  return db.collection("clientes").findOne({ _id: new ObjectId(id) });
+    return clientsCollection.findOne({ _id: new ObjectId(id) });
 }
 
 const addClient = async (cliente) => {
-  const insertedClient = await db.collection("clientes").insertOne(cliente);
-  cliente._id = insertedClient.insertedId;
-  return cliente;
+    const insertedClient = await clientsCollection.insertOne(cliente);
+    cliente._id = insertedClient.insertedId;
+    return cliente;
 };
 
 const putClient = async (id, cliente) => {
-  const editedClient = await db.collection("clientes").replaceOne({ _id: new ObjectId(id) }, cliente);
-  return editedClient;
+    const editedClient = await clientsCollection.replaceOne({ _id: new ObjectId(id) }, cliente);
+    return editedClient;
 };
 
 const editClient = async (id, nuevoCliente) => {
-  const editedClient = await db.collection("clientes").updateOne(
-    { _id: new ObjectId(id) },
-    { $set: nuevoCliente }
-  );
-  return editedClient;
+    const editedClient = await clientsCollection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: nuevoCliente }
+    );
+    return editedClient;
 };
 
 const deleteClient = async (id) => {
-  const deletedClient = await db.collection("clientes").deleteOne({ _id: new ObjectId(id) });
-  return deletedClient;
+    const deletedClient = await clientsCollection.deleteOne({ _id: new ObjectId(id) });
+    return deletedClient;
 };
 
 export {
-  getClients,
-  getClientById,
-  addClient,
-  putClient,
-  editClient,
-  deleteClient,
+    getClients,
+    getClientById,
+    addClient,
+    putClient,
+    editClient,
+    deleteClient,
 };

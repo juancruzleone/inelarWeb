@@ -1,16 +1,10 @@
-import { MongoClient } from "mongodb";
+import { db } from '../db.js';
 import bcrypt from 'bcrypt';
 
-const client = new MongoClient('mongodb+srv://juan:juan123@proyectoinelar.2eadspu.mongodb.net/');
-
-const db = client.db("inelar");
 const cuentaCollection = db.collection("cuentas");
 
 async function createAccount(cuenta) {
-    await client.connect();
-
     const existe = await cuentaCollection.findOne({ userName: cuenta.userName });
-
     if (existe) throw new Error("cuenta ya existe");
 
     const nuevaCuenta = { ...cuenta };
@@ -20,14 +14,10 @@ async function createAccount(cuenta) {
 }
 
 async function login(cuenta) {
-    await client.connect();
-
     const existe = await cuentaCollection.findOne({ userName: cuenta.userName });
-
     if (!existe) throw new Error("No me pude logear");
 
     const esValido = await bcrypt.compare(cuenta.password, existe.password);
-
     if (!esValido) throw new Error("No me pude logear");
 
     return { ...existe, password: undefined };
