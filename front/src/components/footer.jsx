@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footerHeadingMain}>
       <Image
-            src="/logo-elegido.svg"
+            src="/logo-elegidos.svg"
             alt="logo inelar"
             className={styles.fotoServicio}
             width={150}

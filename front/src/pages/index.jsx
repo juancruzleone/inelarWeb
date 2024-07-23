@@ -17,7 +17,7 @@ const Home = () => {
       </Head>
       <div className={styles.tituloHome}>
         <Image
-          src="/logo-elegido.svg"
+          src="/logo-elegidos.svg"
           alt="Logo inelar"
           className={styles.fotoServicio}
           width={300}

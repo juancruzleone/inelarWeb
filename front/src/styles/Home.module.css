@@ -2714,3 +2714,64 @@
   color: white;
 }
 
+.imagenProductoDetalle {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.contenedorProductosRelacionados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productosRelacionados {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.productoRelacionado {
+  width: 150px; /* Ancho fijo */
+  margin: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.imagenProductoRelacionado {
+  max-width: 100%;
+  height: auto;
+}
+
+.productoRelacionado p {
+  margin: 10px 0;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Número de líneas que queremos mostrar */
+  -webkit-box-orient: vertical;
+}
+
+.contenedorDetalleProducto {
+  display: flex;
+  align-items: flex-start; /* Alineación superior */
+  gap: 20px; /* Espacio entre la imagen y el contenido */
+}
+
+.contenedorProducto {
+  flex-shrink: 0; /* Evita que el contenedor de la imagen cambie de tamaño */
+  position: sticky;
+  top: 20px; /* Ajusta la posición desde el borde superior */
+}
+
+.contenidoProducto {
+  flex-grow: 1; /* Permite que el contenido del producto ocupe el resto del espacio */
+  max-width: 600px; /* Limita el ancho máximo del contenido del producto */
+}
+
