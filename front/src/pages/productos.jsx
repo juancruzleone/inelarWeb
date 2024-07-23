@@ -71,7 +71,7 @@ const Productos = () => {
                 <div key={index} className={styles.tarjetaProducto}>
                   <Image
                     src={producto.imagen}
-                    alt={producto.name}
+                    alt={producto.alt} 
                     width={120}
                     height={120}
                     className={styles.imagenProducto}

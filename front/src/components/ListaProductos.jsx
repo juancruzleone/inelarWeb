@@ -16,7 +16,7 @@ const ListaProductos = () => {
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [newProduct, setNewProduct] = useState({ name: "", categoria: "", description: "", price: "", imagen: null });
+  const [newProduct, setNewProduct] = useState({ name: "", categoria: "", description: "", price: "", imagen: null, alt: "" });
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -86,7 +86,11 @@ const ListaProductos = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (createModal) {
-      setNewProduct({ ...newProduct, [name]: value });
+      const updatedProduct = { ...newProduct, [name]: value };
+      if (name === "name") {
+        updatedProduct.alt = value;
+      }
+      setNewProduct(updatedProduct);
     } else if (editModal) {
       setSelectedProduct({ ...selectedProduct, [name]: value });
     }
@@ -101,6 +105,7 @@ const ListaProductos = () => {
       formData.append('description', newProduct.description);
       formData.append('price', newProduct.price);
       formData.append('imagen', newProduct.imagen);
+      formData.append('alt', newProduct.alt);
 
       const response = await fetch("http://localhost:2023/api/productos", {
         method: "POST",
@@ -347,7 +352,7 @@ const ListaProductos = () => {
                     ? URL.createObjectURL(selectedProduct.imagen)
                     : selectedProduct.imagen
                 }
-                alt="Producto"
+                alt={selectedProduct.alt}
                 className={styles.imagenProductoEditar}
                 width={80}
                 height={50}

@@ -95,7 +95,7 @@ const DetalleProducto = ({ initialProducto, initialProductosRelacionados }) => {
         <div className={styles.contenedorProducto}>
           <Image
             src={producto.imagen}
-            alt={producto.nombre}
+            alt={producto.alt}
             width={150}
             height={180}
             className={styles.imagenProductoDetalle}
@@ -121,7 +121,7 @@ const DetalleProducto = ({ initialProducto, initialProductosRelacionados }) => {
             <div key={relacionado._id} className={styles.productoRelacionado}>
               <Image
                 src={relacionado.imagen}
-                alt={relacionado.nombre}
+                alt={relacionado.alt}
                 width={100}
                 height={120}
                 className={styles.imagenProductoRelacionado}
