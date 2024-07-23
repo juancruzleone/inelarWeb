@@ -37,7 +37,7 @@ const putProduct = async (req, res) => {
     if (req.file) {
       producto.imagen = `/${req.file.filename}`;
     }
-    const editedProduct = await service.remplazarProducto(id, producto);
+    const editedProduct = await service.putProduct(id, producto);
     if (editedProduct.modifiedCount > 0) {
       res.status(200).json(producto);
     } else {

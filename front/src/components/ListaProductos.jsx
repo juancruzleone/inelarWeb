@@ -16,7 +16,7 @@ const ListaProductos = () => {
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [newProduct, setNewProduct] = useState({ name: "", category: "", description: "", price: "", image: null });
+  const [newProduct, setNewProduct] = useState({ name: "", categoria: "", description: "", price: "", imagen: null });
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +36,7 @@ const ListaProductos = () => {
       setProducts(data);
       const uniqueCategories = Array.from(
         new Set(data.map((product) => product.categoria))
-      ).filter(category => category !== undefined && category !== "");
+      ).filter(categoria => categoria !== undefined && categoria !== "");
       setCategories(uniqueCategories);
       setFilteredProducts(data);
     } catch (error) {
@@ -97,10 +97,10 @@ const ListaProductos = () => {
     try {
       const formData = new FormData();
       formData.append('name', newProduct.name);
-      formData.append('category', newProduct.category);
+      formData.append('categoria', newProduct.categoria);
       formData.append('description', newProduct.description);
       formData.append('price', newProduct.price);
-      formData.append('image', newProduct.image);
+      formData.append('imagen', newProduct.imagen);
 
       const response = await fetch("http://localhost:2023/api/productos", {
         method: "POST",
@@ -127,11 +127,11 @@ const ListaProductos = () => {
     try {
       const formData = new FormData();
       formData.append('name', selectedProduct.name);
-      formData.append('category', selectedProduct.category);
+      formData.append('categoria', selectedProduct.categoria);
       formData.append('description', selectedProduct.description);
       formData.append('price', selectedProduct.price);
-      if (selectedProduct.image instanceof File) {
-        formData.append('image', selectedProduct.image);
+      if (selectedProduct.imagen instanceof File) {
+        formData.append('imagen', selectedProduct.imagen);
       }
 
       const response = await fetch(`http://localhost:2023/api/productos/${selectedProduct._id}`, {
@@ -198,13 +198,13 @@ const ListaProductos = () => {
         />
         <div className={styles.posicionSeccionProductos}>
           <div className={styles.contenedorCategorias}>
-            {categories.map((category, index) => (
+            {categories.map((categoria, index) => (
               <div
                 key={index}
-                className={`${styles.contenedorCategoria} ${category === selectedCategory ? styles.categoriaSeleccionada : ""}`}
-                onClick={() => setSelectedCategory(category)}
+                className={`${styles.contenedorCategoria} ${categoria === selectedCategory ? styles.categoriaSeleccionada : ""}`}
+                onClick={() => setSelectedCategory(categoria)}
               >
-                <p>{category.charAt(0).toUpperCase() + category.slice(1)}</p>
+                <p>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</p>
               </div>
             ))}
           </div>
@@ -248,17 +248,17 @@ const ListaProductos = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="category">Categoría:</label>
+          <label htmlFor="categoria">Categoría:</label>
           <select
-            id="category"
-            name="category"
-            value={newProduct.category}
+            id="categoria"
+            name="categoria"
+            value={newProduct.categoria}
             onChange={handleChange}
             required
           >
             <option value="">Seleccione una categoría</option>
-            {categories.map((category, index) => (
-              <option key={index} value={category}>{category}</option>
+            {categories.map((categoria, index) => (
+              <option key={index} value={categoria}>{categoria}</option>
             ))}
           </select>
           <label htmlFor="description">Descripción:</label>
@@ -278,12 +278,12 @@ const ListaProductos = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="image">Imagen:</label>
+          <label htmlFor="imagen">Imagen:</label>
           <input
             type="file"
-            id="image"
-            name="image"
-            onChange={(e) => setNewProduct({ ...newProduct, image: e.target.files[0] })}
+            id="imagen"
+            name="imagen"
+            onChange={(e) => setNewProduct({ ...newProduct, imagen: e.target.files[0] })}
             required
           />
           <button type="submit">Crear</button>
@@ -308,17 +308,17 @@ const ListaProductos = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="category">Categoría:</label>
+          <label htmlFor="categoria">Categoría:</label>
           <select
-            id="category"
-            name="category"
-            value={selectedProduct?.category || ""}
+            id="categoria"
+            name="categoria"
+            value={selectedProduct?.categoria || ""}
             onChange={handleChange}
             required
           >
             <option value="">Seleccione una categoría</option>
-            {categories.map((category, index) => (
-              <option key={index} value={category}>{category}</option>
+            {categories.map((categoria, index) => (
+              <option key={index} value={categoria}>{categoria}</option>
             ))}
           </select>
           <label htmlFor="description">Descripción:</label>
@@ -349,17 +349,17 @@ const ListaProductos = () => {
                 }
                 alt="Producto"
                 className={styles.imagenProductoEditar}
-                width={80} 
-                height={50} 
+                width={80}
+                height={50}
               />
             </div>
           )}
-          <label htmlFor="image">Imagen:</label>
+          <label htmlFor="imagen">Imagen:</label>
           <input
             type="file"
-            id="image"
-            name="image"
-            onChange={(e) => setSelectedProduct({ ...selectedProduct, image: e.target.files[0] })}
+            id="imagen"
+            name="imagen"
+            onChange={(e) => setSelectedProduct({ ...selectedProduct, imagen: e.target.files[0] })}
           />
           <button type="submit">Guardar</button>
         </form>
