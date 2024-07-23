@@ -119,7 +119,7 @@ const Cart = () => {
                 <div className={styles.imagenProductoDetalleCarrito}>
                   <Image
                     src={producto.imagen}
-                    alt={producto.nombre}
+                    alt={producto.alt}
                     width={150}
                     height={180}
                   />
@@ -138,13 +138,13 @@ const Cart = () => {
                   className={styles.botonSumar}
                   onClick={() => handleIncreaseUnits(index)}
                 >
-                  <Image src="/suma.svg" alt="Sumar unidades" width={20} height={20} />
+                  <Image src="/suma.svg" alt="Icono sumar unidades" width={20} height={20} />
                 </button>
                 <button
                   className={styles.botonEliminar}
                   onClick={() => handleRemoveProduct(index)}
                 >
-                  <Image src="/eliminar.svg" alt="Eliminar unidades" width={20} height={20} />
+                  <Image src="/eliminar.svg" alt="Icono eliminar unidades" width={20} height={20} />
                 </button>
               </div>
             ))
