@@ -105,7 +105,7 @@ const DetalleProducto = ({ initialProducto, initialProductosRelacionados }) => {
           <div className={styles.contenidoDetalle}>
             <h3 className={styles.nombreProductoDetalle}>{producto.name}</h3>
             <p className={styles.categoriaDetalle}>{producto.categoria}</p>
-            <p className={styles.precioDetalle}>{producto.price}</p>
+            <p className={styles.precioDetalle}>${producto.price}</p>
             <a href="#" onClick={handleAgregarAlCarrito}>Agregar al carrito</a>
           </div>
         </div>
