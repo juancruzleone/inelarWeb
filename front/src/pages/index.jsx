@@ -128,14 +128,12 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       <div className={styles.contenedorObras}>
         <h2 className={styles.subtitulos}>Obras</h2>
         <div className={styles.contenedorCarrousel}>
           <Carrousel />
         </div>
       </div>
-      
       <Footer />
     </Layout>
   );

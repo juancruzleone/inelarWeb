@@ -1090,13 +1090,15 @@
   padding: 40px;
 }
 
+/* productos.module.css */
+
 .tarjetaProducto {
-  display: inline-block;
-  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 300px;
-  height: 300px;
+  height: 400px; /* Ajusta la altura según sea necesario */
   margin: 15px;
-  margin-bottom: 50px;
   border-radius: 7px;
   padding: 20px;
   text-align: center;
@@ -1104,21 +1106,40 @@
   font-family: 'montserrat', sans-serif;
 }
 
-.tarjetaProducto h3{
+.tarjetaProducto h3 {
   font-family: "montserrat", sans-serif;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin: 10px 0; /* Reducir márgenes */
 }
 
+.tarjetaProducto p {
+  margin: 10px 0; /* Reducir márgenes */
+}
 
 .imagenProducto {
   display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-  min-height: 80px;
+  margin: 0 auto 10px auto; /* Centrar horizontalmente y reducir margen inferior */
+  width: 150px; /* Ancho fijo */
+  height: 150px; /* Alto fijo */
+  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionar */
 }
+
+.botonVerMas {
+  font-family: "montserrat", sans-serif;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  background-color: #C75F00;
+  color: #fff;
+  font-size: 16px;
+  font-weight: lighter;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: auto; /* Empujar el botón hacia el fondo */
+}
+
+
 
 .imagenProductoEditar {
   display: block;
@@ -2773,5 +2794,89 @@
 .contenidoProducto {
   flex-grow: 1; /* Permite que el contenido del producto ocupe el resto del espacio */
   max-width: 600px; /* Limita el ancho máximo del contenido del producto */
+}
+
+
+/* Estilo para la imagen del producto principal en el contenedorProducto */
+.contenedorProducto {
+  margin-top: 60px;
+  background-color: #121212;
+  width: 250px;
+  height: 250px;
+  margin-left: 60px;
+  border-radius: 20px;
+  padding: 20px; /* Ajustado para el espacio alrededor de la imagen */
+  margin-right: 40px;
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-items: center; /* Centra la imagen verticalmente */
+}
+
+.imagenProductoDetalle {
+  width: 150px; /* Ancho fijo */
+  height: 180px; /* Alto fijo */
+  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionar */
+}
+
+/* Estilo para las imágenes en productos relacionados */
+.contenedorProductosRelacionados {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tituloSeccionProductoRelacionado {
+  margin-top: 60px;
+}
+
+.productosRelacionados {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.productoRelacionado {
+  background-color: #121212;
+  width: 150px; /* Ancho fijo */
+  height: 250px; /* Alto fijo */
+  margin: 10px;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Espaciado uniforme entre elementos */
+}
+
+.imagenProductoRelacionado {
+  width: 100px; /* Ancho fijo */
+  height: 120px; /* Alto fijo */
+  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionar */
+}
+
+.productoRelacionado p {
+  margin: 10px 0;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Número de líneas que queremos mostrar */
+  -webkit-box-orient: vertical;
+}
+
+.botonDetalleRelacionado {
+  background-color: #C75F00;
+  padding: 4px;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-family: "montserrat", sans-serif;
+  border: 0px;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.botonDetalleRelacionado:hover {
+  background-color: #f57600;
 }
 
