@@ -20,6 +20,10 @@ const ListaClientes = () => {
   const [buscar, setBuscar] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  const token = userData?.token;
+  const role = userData?.cuenta?.role;
+
   useEffect(() => {
     obtenerClientes();
   }, []);
@@ -31,7 +35,13 @@ const ListaClientes = () => {
   const obtenerClientes = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:2023/api/clientes");
+      const response = await fetch("http://localhost:2023/api/clientes", {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+          "Role": role,
+        },
+      });
       const data = await response.json();
 
       setClientes(data);
@@ -101,6 +111,8 @@ const ListaClientes = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+          "Role": role,
         },
         body: JSON.stringify(nuevoCliente),
       });
@@ -125,6 +137,8 @@ const ListaClientes = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+          "Role": role,
         },
         body: JSON.stringify(clienteSeleccionado),
       });
@@ -144,6 +158,10 @@ const ListaClientes = () => {
     try {
       const response = await fetch(`http://localhost:2023/api/clientes/${clienteSeleccionado._id}`, {
         method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Role": role,
+        },
       });
       if (!response.ok) {
         const errorData = await response.json();

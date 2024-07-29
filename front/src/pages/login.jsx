@@ -49,6 +49,7 @@ const Login = () => {
       const data = await response.json();
       console.log("Login response data:", data);
 
+      // Almacena los datos del usuario, incluyendo el rol
       localStorage.setItem("userData", JSON.stringify(data));
 
       setShowModal(true);

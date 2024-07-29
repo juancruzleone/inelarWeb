@@ -28,11 +28,28 @@ const ListaProductos = () => {
     filterProducts();
   }, [selectedCategory, search, products]);
 
+  const getRoleFromLocalStorage = () => {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    console.log("Role from localStorage:", userData && userData.cuenta ? userData.cuenta.role : null); // Verificar role
+    return userData && userData.cuenta ? userData.cuenta.role : null;
+  };
+
   const fetchProducts = async () => {
     setLoading(true);
+    const role = getRoleFromLocalStorage();
     try {
-      const response = await fetch("http://localhost:2023/api/productos");
+      const response = await fetch("http://localhost:2023/api/productos", {
+        headers: {
+          'Role': role
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
       const data = await response.json();
+      if (!Array.isArray(data)) {
+        throw new Error("Invalid response format");
+      }
       setProducts(data);
       const uniqueCategories = Array.from(
         new Set(data.map((product) => product.categoria))
@@ -98,6 +115,7 @@ const ListaProductos = () => {
 
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
+    const role = getRoleFromLocalStorage();
     try {
       const formData = new FormData();
       formData.append('name', newProduct.name);
@@ -109,6 +127,9 @@ const ListaProductos = () => {
 
       const response = await fetch("http://localhost:2023/api/productos", {
         method: "POST",
+        headers: {
+          'Role': role
+        },
         body: formData,
       });
 
@@ -129,6 +150,7 @@ const ListaProductos = () => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+    const role = getRoleFromLocalStorage();
     try {
       const formData = new FormData();
       formData.append('name', selectedProduct.name);
@@ -141,6 +163,9 @@ const ListaProductos = () => {
 
       const response = await fetch(`http://localhost:2023/api/productos/${selectedProduct._id}`, {
         method: "PUT",
+        headers: {
+          'Role': role
+        },
         body: formData,
       });
 
@@ -164,9 +189,13 @@ const ListaProductos = () => {
   };
 
   const handleDeleteSubmit = async () => {
+    const role = getRoleFromLocalStorage();
     try {
       const response = await fetch(`http://localhost:2023/api/productos/${selectedProduct._id}`, {
         method: "DELETE",
+        headers: {
+          'Role': role
+        }
       });
       if (!response.ok) {
         const errorData = await response.json();
@@ -217,15 +246,27 @@ const ListaProductos = () => {
             {loading ? (
               <p>Cargando productos...</p>
             ) : (
-              filteredProducts.map((product, index) => (
+              Array.isArray(filteredProducts) && filteredProducts.map((product, index) => (
                 <div key={index} className={styles.tarjetaProductoPanelClientes}>
                   <h3>{product.name}</h3>
                   <div>
                     <button onClick={() => handleEditProduct(product)} className={styles.botonEditar}>
-                      <Image src="/editar.svg" alt="Editar" width={10} height={10} />
+                      <Image
+                        src="/editar.svg"
+                        alt="Editar"
+                        className={styles.iconoEditar}
+                        width={30}
+                        height={30}
+                      />
                     </button>
                     <button onClick={() => handleDeleteProduct(product)} className={styles.botonEliminar}>
-                      <Image src="/eliminar.svg" alt="Eliminar" width={10} height={10} />
+                      <Image
+                        src="/eliminar.svg"
+                        alt="Eliminar"
+                        className={styles.iconoEliminar}
+                        width={30}
+                        height={30}
+                      />
                     </button>
                   </div>
                 </div>
@@ -239,7 +280,7 @@ const ListaProductos = () => {
         isOpen={createModal}
         onRequestClose={handleCloseModal}
         contentLabel="Crear Producto"
-        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
+        className={`${styles.ModalPanel} ${styles.Modal}`}
         closeTimeoutMS={500}
       >
         <h2>Crear Producto</h2>
