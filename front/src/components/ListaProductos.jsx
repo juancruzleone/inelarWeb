@@ -20,6 +20,10 @@ const ListaProductos = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  const token = userData?.token;
+  const role = userData?.cuenta?.role;
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -28,19 +32,13 @@ const ListaProductos = () => {
     filterProducts();
   }, [selectedCategory, search, products]);
 
-  const getRoleFromLocalStorage = () => {
-    const userData = JSON.parse(localStorage.getItem('userData'));
-    console.log("Role from localStorage:", userData && userData.cuenta ? userData.cuenta.role : null); // Verificar role
-    return userData && userData.cuenta ? userData.cuenta.role : null;
-  };
-
   const fetchProducts = async () => {
     setLoading(true);
-    const role = getRoleFromLocalStorage();
     try {
       const response = await fetch("http://localhost:2023/api/productos", {
         headers: {
-          'Role': role
+          "Authorization": `Bearer ${token}`,
+          "Role": role,
         }
       });
       if (!response.ok) {
@@ -115,7 +113,6 @@ const ListaProductos = () => {
 
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
-    const role = getRoleFromLocalStorage();
     try {
       const formData = new FormData();
       formData.append('name', newProduct.name);
@@ -128,7 +125,8 @@ const ListaProductos = () => {
       const response = await fetch("http://localhost:2023/api/productos", {
         method: "POST",
         headers: {
-          'Role': role
+          "Authorization": `Bearer ${token}`,
+          "Role": role,
         },
         body: formData,
       });
@@ -150,7 +148,6 @@ const ListaProductos = () => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    const role = getRoleFromLocalStorage();
     try {
       const formData = new FormData();
       formData.append('name', selectedProduct.name);
@@ -164,7 +161,8 @@ const ListaProductos = () => {
       const response = await fetch(`http://localhost:2023/api/productos/${selectedProduct._id}`, {
         method: "PUT",
         headers: {
-          'Role': role
+          "Authorization": `Bearer ${token}`,
+          "Role": role,
         },
         body: formData,
       });
@@ -189,12 +187,12 @@ const ListaProductos = () => {
   };
 
   const handleDeleteSubmit = async () => {
-    const role = getRoleFromLocalStorage();
     try {
       const response = await fetch(`http://localhost:2023/api/productos/${selectedProduct._id}`, {
         method: "DELETE",
         headers: {
-          'Role': role
+          "Authorization": `Bearer ${token}`,
+          "Role": role,
         }
       });
       if (!response.ok) {
