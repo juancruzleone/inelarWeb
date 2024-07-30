@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
 import Modal from "react-modal";
 import styles from "@/styles/Home.module.css";
@@ -109,6 +109,12 @@ const ListaProductos = () => {
     } else if (editModal) {
       setSelectedProduct({ ...selectedProduct, [name]: value });
     }
+  };
+
+  const handleTextareaInput = (e) => {
+    e.target.style.height = 'auto';
+    e.target.style.height = `${e.target.scrollHeight}px`;
+    handleChange(e);
   };
 
   const handleCreateSubmit = async (e) => {
@@ -293,25 +299,28 @@ const ListaProductos = () => {
             required
           />
           <label htmlFor="categoria">Categoría:</label>
-          <select
+          <input
+            type="text"
             id="categoria"
             name="categoria"
             value={newProduct.categoria}
             onChange={handleChange}
             required
-          >
-            <option value="">Seleccione una categoría</option>
-            {categories.map((categoria, index) => (
-              <option key={index} value={categoria}>{categoria}</option>
-            ))}
-          </select>
+          />
           <label htmlFor="description">Descripción:</label>
           <textarea
             id="description"
             name="description"
             value={newProduct.description}
-            onChange={handleChange}
+            onChange={handleTextareaInput}
             required
+            className={styles.textarea}
+            ref={(textarea) => {
+              if (textarea) {
+                textarea.style.height = 'auto';
+                textarea.style.height = `${textarea.scrollHeight}px`;
+              }
+            }}
           ></textarea>
           <label htmlFor="price">Precio:</label>
           <input
@@ -327,8 +336,8 @@ const ListaProductos = () => {
             type="file"
             id="imagen"
             name="imagen"
+            accept="image/*"
             onChange={(e) => setNewProduct({ ...newProduct, imagen: e.target.files[0] })}
-            required
           />
           <button type="submit">Crear</button>
         </form>
@@ -338,7 +347,7 @@ const ListaProductos = () => {
         isOpen={editModal}
         onRequestClose={handleCloseModal}
         contentLabel="Editar Producto"
-        className={`${styles.ModalPanel} ${styles.Modal}`}
+        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
         closeTimeoutMS={500}
       >
         <h2>Editar Producto</h2>
@@ -353,25 +362,28 @@ const ListaProductos = () => {
             required
           />
           <label htmlFor="categoria">Categoría:</label>
-          <select
+          <input
+            type="text"
             id="categoria"
             name="categoria"
             value={selectedProduct?.categoria || ""}
             onChange={handleChange}
             required
-          >
-            <option value="">Seleccione una categoría</option>
-            {categories.map((categoria, index) => (
-              <option key={index} value={categoria}>{categoria}</option>
-            ))}
-          </select>
+          />
           <label htmlFor="description">Descripción:</label>
           <textarea
             id="description"
             name="description"
             value={selectedProduct?.description || ""}
-            onChange={handleChange}
+            onChange={handleTextareaInput}
             required
+            className={styles.textarea}
+            ref={(textarea) => {
+              if (textarea) {
+                textarea.style.height = 'auto';
+                textarea.style.height = `${textarea.scrollHeight}px`;
+              }
+            }}
           ></textarea>
           <label htmlFor="price">Precio:</label>
           <input
@@ -382,27 +394,12 @@ const ListaProductos = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="image">Imagen actual:</label>
-          {selectedProduct?.imagen && (
-            <div>
-              <Image
-                src={
-                  selectedProduct.imagen instanceof File
-                    ? URL.createObjectURL(selectedProduct.imagen)
-                    : selectedProduct.imagen
-                }
-                alt={selectedProduct.alt}
-                className={styles.imagenProductoEditar}
-                width={80}
-                height={50}
-              />
-            </div>
-          )}
           <label htmlFor="imagen">Imagen:</label>
           <input
             type="file"
             id="imagen"
             name="imagen"
+            accept="image/*"
             onChange={(e) => setSelectedProduct({ ...selectedProduct, imagen: e.target.files[0] })}
           />
           <button type="submit">Guardar</button>
@@ -413,21 +410,20 @@ const ListaProductos = () => {
         isOpen={deleteModal}
         onRequestClose={handleCloseModal}
         contentLabel="Eliminar Producto"
-        className={`${styles.ModalPanelEditar} ${styles.Modal}`}
+        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
         closeTimeoutMS={500}
       >
         <h2>Eliminar Producto</h2>
-        <p>¿Estás seguro de que deseas eliminar a <span>{selectedProduct?.name}</span>?</p>
-        <div className={styles.contenedorBotonesEditar}>
-          <button onClick={handleDeleteSubmit} className={styles.botonEliminarProducto}>Eliminar</button>
-          <button onClick={handleCloseModal} className={styles.botonCancelarModal}>Cancelar</button>
-        </div>
+        <p>¿Estás seguro de que deseas eliminar este producto?</p>
+        <button onClick={handleDeleteSubmit}>Eliminar</button>
+        <button onClick={handleCloseModal}>Cancelar</button>
       </Modal>
 
       <Modal
         isOpen={confirmationModal}
+        onRequestClose={() => setConfirmationModal(false)}
         contentLabel="Confirmación"
-        className={`${styles.ModalConfirmacion} ${styles.Modal}`}
+        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
         closeTimeoutMS={500}
       >
         <p>{confirmationMessage}</p>

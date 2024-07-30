@@ -2014,7 +2014,7 @@
     margin-bottom: 15px;
   }
 
-  .ModalPanelCrear{
+  .ModalPanelCrear {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -2027,8 +2027,13 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     width: 400px;
-    height: 580px
+    height: 580px; /* Altura inicial determinada */
+    max-height: 90vh; /* Altura máxima para que no se salga de la pantalla */
+    overflow: auto; /* Añade scroll si el contenido supera la altura máxima */
   }
+  
+
+  
 
   .ModalPanelCrear h2{
     margin-top: 20px;
