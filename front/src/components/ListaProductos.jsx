@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from 'next/image';
 import Modal from "react-modal";
 import styles from "@/styles/Home.module.css";
@@ -299,14 +299,20 @@ const ListaProductos = () => {
             required
           />
           <label htmlFor="categoria">Categoría:</label>
-          <input
-            type="text"
+          <select
             id="categoria"
             name="categoria"
             value={newProduct.categoria}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Selecciona una categoría</option>
+            {categories.map((categoria, index) => (
+              <option key={index} value={categoria}>
+                {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+              </option>
+            ))}
+          </select>
           <label htmlFor="description">Descripción:</label>
           <textarea
             id="description"
@@ -362,14 +368,20 @@ const ListaProductos = () => {
             required
           />
           <label htmlFor="categoria">Categoría:</label>
-          <input
-            type="text"
+          <select
             id="categoria"
             name="categoria"
             value={selectedProduct?.categoria || ""}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Selecciona una categoría</option>
+            {categories.map((categoria, index) => (
+              <option key={index} value={categoria}>
+                {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+              </option>
+            ))}
+          </select>
           <label htmlFor="description">Descripción:</label>
           <textarea
             id="description"
