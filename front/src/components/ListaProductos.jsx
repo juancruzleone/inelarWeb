@@ -278,7 +278,7 @@ const ListaProductos = () => {
         isOpen={createModal}
         onRequestClose={handleCloseModal}
         contentLabel="Crear Producto"
-        className={`${styles.ModalPanel} ${styles.Modal}`}
+        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
         closeTimeoutMS={500}
       >
         <h2>Crear Producto</h2>

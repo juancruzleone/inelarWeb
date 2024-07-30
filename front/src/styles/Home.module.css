@@ -1986,7 +1986,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     width: 400px;
-    height: 660px
+    height: 680px
   }
 
   .ModalPanel h2{
@@ -2027,7 +2027,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     width: 400px;
-    height: 560px
+    height: 580px
   }
 
   .ModalPanelCrear h2{
@@ -2107,6 +2107,13 @@
 
 .formularioPanel button{
   cursor: pointer;
+}
+
+.formularioPanel textarea{
+  margin-top: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
 }
 
 .contenedorEliminar{
