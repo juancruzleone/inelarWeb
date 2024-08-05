@@ -11,7 +11,7 @@ const Custom404 = () => {
             <Head>
                 <title>Error 404 | Inelar</title>
                 <meta name="description" content="Descripción de mi aplicación" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/inelar.ico" />
             </Head>
             <section className='contenedor404'>
                 <h1 className='titulo404'>Código 404</h1>

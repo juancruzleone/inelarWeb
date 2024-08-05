@@ -89,7 +89,7 @@ const DetalleProducto = ({ initialProducto, initialProductosRelacionados }) => {
       <Head>
         <title>Detalle del producto | Inelar</title>
         <meta name="description" content="Descripción de mi aplicación" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/inelar.ico" />
       </Head>
       <div className={styles.contenedorDetalleProducto}>
         <div className={styles.contenedorProducto}>

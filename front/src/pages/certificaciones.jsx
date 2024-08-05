@@ -11,7 +11,7 @@ const Certificaciones = () => {
       <Head>
         <title>Certificaciones | Inelar</title>
         <meta name="description" content="Descripción de mi aplicación" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/inelar.ico" />
       </Head>
       <h1 className={styles.tituloPaginas}>Certificaciones</h1>
       <p className={styles.subtituloCertificaciones}>

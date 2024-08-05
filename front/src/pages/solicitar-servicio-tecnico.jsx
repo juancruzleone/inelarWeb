@@ -83,7 +83,7 @@ const SolicitarServicioTecnico = () => {
       <Head>
         <title>Solicitar servicio técnico | Inelar</title>
         <meta name="description" content="Descripción de mi aplicación" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/inelar.ico" />
       </Head>
       <h1 className={styles.tituloSolicitudServicio}>Solicitar servicio técnico</h1>
       <div className={styles.contenedorContenidoServicio}>

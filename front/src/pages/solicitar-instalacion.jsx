@@ -82,7 +82,7 @@ const SolicitarInstalaciones = () => {
       <Head>
         <title>Solicitar instalación | Inelar</title>
         <meta name="description" content="Descripción de mi aplicación" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/inelar.ico" />
       </Head>
       <h1 className={styles.tituloSolicitudServicio}>Solicitar instalación</h1>
       <div className={styles.contenedorContenidoServicio}>

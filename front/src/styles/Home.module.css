@@ -934,11 +934,11 @@
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Espaciado uniforme entre las columnas */
+  justify-content: space-between; 
 }
 
 .footerColumn {
-  width: calc(33.33% - 20px); /* Calculamos el ancho de cada columna */
+  width: calc(33.33% - 20px); 
   padding: 0 10px;
 }
 
@@ -973,11 +973,11 @@
   font-size: 0.8rem;
 }
 
-/* Media query para hacerlo responsive en pantallas más pequeñas */
+
 @media (max-width: 768px) {
   .footerColumn {
-    width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
-    margin-bottom: 20px; /* Agregamos espacio entre las columnas */
+    width: 100%; 
+    margin-bottom: 20px; 
   }
 }
 
@@ -1090,14 +1090,12 @@
   padding: 40px;
 }
 
-/* productos.module.css */
-
 .tarjetaProducto {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 300px;
-  height: 400px; /* Ajusta la altura según sea necesario */
+  height: 400px; 
   margin: 15px;
   border-radius: 7px;
   padding: 20px;
@@ -1109,19 +1107,19 @@
 .tarjetaProducto h3 {
   font-family: "montserrat", sans-serif;
   font-weight: bold;
-  margin: 10px 0; /* Reducir márgenes */
+  margin: 10px 0; 
 }
 
 .tarjetaProducto p {
-  margin: 10px 0; /* Reducir márgenes */
+  margin: 10px 0; 
 }
 
 .imagenProducto {
   display: block;
-  margin: 0 auto 10px auto; /* Centrar horizontalmente y reducir margen inferior */
-  width: 150px; /* Ancho fijo */
-  height: 150px; /* Alto fijo */
-  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionar */
+  margin: 0 auto 10px auto; 
+  width: 150px; 
+  height: 150px;
+  object-fit: cover; 
 }
 
 .botonVerMas {
@@ -1136,7 +1134,7 @@
   font-weight: lighter;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
-  margin-top: auto; /* Empujar el botón hacia el fondo */
+  margin-top: auto; 
 }
 
 
@@ -2027,9 +2025,9 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     width: 400px;
-    height: 580px; /* Altura inicial determinada */
-    max-height: 90vh; /* Altura máxima para que no se salga de la pantalla */
-    overflow: auto; /* Añade scroll si el contenido supera la altura máxima */
+    height: 580px; 
+    max-height: 90vh; 
+    overflow: auto; 
   }
   
 
@@ -2476,7 +2474,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #121212;
-  color: white; /* Para que el texto sea visible en fondo oscuro */
+  color: white; 
 }
 
 /*.formularioLogin button {
@@ -2608,7 +2606,7 @@
 
 .inputField {
   width: 100%;
-  padding-right: 2.5rem; /* Espacio para el botón */
+  padding-right: 2.5rem;
 }
 
 .botonOjito {
@@ -2621,7 +2619,7 @@
   cursor: pointer;
   padding: 0;
   color: white;
-  font-size: 1.5rem; /* Tamaño del icono */
+  font-size: 1.5rem; 
 }
 
 .botonOjito:hover {
@@ -2769,7 +2767,7 @@
 }
 
 .productoRelacionado {
-  width: 150px; /* Ancho fijo */
+  width: 150px; 
   margin: 10px;
   text-align: center;
   overflow: hidden;
@@ -2787,29 +2785,27 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Número de líneas que queremos mostrar */
+  -webkit-line-clamp: 2; 
   -webkit-box-orient: vertical;
 }
 
 .contenedorDetalleProducto {
   display: flex;
-  align-items: flex-start; /* Alineación superior */
-  gap: 20px; /* Espacio entre la imagen y el contenido */
+  align-items: flex-start;
+  gap: 20px; 
 }
 
 .contenedorProducto {
-  flex-shrink: 0; /* Evita que el contenedor de la imagen cambie de tamaño */
+  flex-shrink: 0; 
   position: sticky;
-  top: 20px; /* Ajusta la posición desde el borde superior */
+  top: 20px; 
 }
 
 .contenidoProducto {
-  flex-grow: 1; /* Permite que el contenido del producto ocupe el resto del espacio */
-  max-width: 600px; /* Limita el ancho máximo del contenido del producto */
+  flex-grow: 1; 
+  max-width: 600px; 
 }
 
-
-/* Estilo para la imagen del producto principal en el contenedorProducto */
 .contenedorProducto {
   margin-top: 60px;
   background-color: #121212;
@@ -2817,20 +2813,18 @@
   height: 250px;
   margin-left: 60px;
   border-radius: 20px;
-  padding: 20px; /* Ajustado para el espacio alrededor de la imagen */
+  padding: 20px; 
   margin-right: 40px;
   display: flex;
-  justify-content: center; /* Centra la imagen horizontalmente */
-  align-items: center; /* Centra la imagen verticalmente */
+  justify-content: center; 
+  align-items: center; 
 }
 
 .imagenProductoDetalle {
-  width: 150px; /* Ancho fijo */
-  height: 180px; /* Alto fijo */
-  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionar */
+  width: 150px; 
+  object-fit: cover; 
 }
 
-/* Estilo para las imágenes en productos relacionados */
 .contenedorProductosRelacionados {
   text-align: center;
   margin-top: 20px;
@@ -2849,21 +2843,21 @@
 
 .productoRelacionado {
   background-color: #121212;
-  width: 150px; /* Ancho fijo */
-  height: 250px; /* Alto fijo */
+  width: 150px; 
+  height: 250px; 
   margin: 10px;
   border-radius: 15px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Espaciado uniforme entre elementos */
+  justify-content: space-between; 
 }
 
 .imagenProductoRelacionado {
-  width: 100px; /* Ancho fijo */
-  height: 120px; /* Alto fijo */
-  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionar */
+  width: 100px; 
+  height: 120px; 
+  object-fit: cover; 
 }
 
 .productoRelacionado p {
@@ -2873,7 +2867,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Número de líneas que queremos mostrar */
+  -webkit-line-clamp: 2; 
   -webkit-box-orient: vertical;
 }
 

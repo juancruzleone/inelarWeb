@@ -42,7 +42,7 @@ const Productos = () => {
       <Head>
         <title>Productos | Inelar</title>
         <meta name="description" content="Descripción de mi aplicación" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/inelar.ico" />
       </Head>
       <div className={styles.contenedorPagina}>
         <h1 className={styles.tituloPaginas}>Productos</h1>

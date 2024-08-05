@@ -224,8 +224,8 @@ input[type="file"]::file-selector-button:hover {
 
 
 textarea {
-  height: auto; /* Altura automática para que se expanda */
-  max-height: 200px; /* Altura máxima del textarea para que no crezca indefinidamente */
-  resize: vertical; /* Permite al usuario redimensionar verticalmente */
-  overflow: auto; /* Añade scroll si el contenido supera la altura del textarea */
+  height: auto; 
+  max-height: 200px; 
+  resize: vertical; 
+  overflow: auto; 
 }

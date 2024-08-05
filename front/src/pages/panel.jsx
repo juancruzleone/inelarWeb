@@ -38,7 +38,7 @@ const PanelAdmin = () => {
       <Head>
         <title>Panel admin | Inelar</title>
         <meta name="description" content="Descripción de mi aplicación" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/inelar.ico" />
       </Head>
       <h1 className={styles.tituloPanel}>Panel admin</h1>
       <div className={styles.contenedorPanelAdmin}>

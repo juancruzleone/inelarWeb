@@ -13,7 +13,7 @@ const Home = () => {
       <Head>
         <title>Inicio | Inelar</title>
         <meta name="description" content="Descripción de mi aplicación" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/inelar.ico" />
       </Head>
       <div className={styles.tituloHome}>
         <Image
