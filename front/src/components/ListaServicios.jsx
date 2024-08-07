@@ -9,6 +9,7 @@ const ListaServicios = () => {
   const [filteredServices, setFilteredServices] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -34,15 +35,15 @@ const ListaServicios = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedCategory === null) {
-      setFilteredServices(services);
-    } else {
-      const filtered = services.filter(
-        (service) => service.category === selectedCategory
-      );
-      setFilteredServices(filtered);
-    }
-  }, [selectedCategory, services]);
+    const filtered = services.filter(service => {
+      const matchesCategory = selectedCategory === null || service.category === selectedCategory;
+      const matchesSearch = 
+        service.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        service.direccion.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+    setFilteredServices(filtered);
+  }, [selectedCategory, services, searchTerm]);
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -55,6 +56,13 @@ const ListaServicios = () => {
   return (
     <>
       <h2 className={styles.tituloPaginasPanel}>Servicios</h2>
+      <input
+        type="text"
+        placeholder="Buscar servicio por nombre o dirección..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className={styles.buscadorPanel} 
+      />
       <div className={styles.posicionSeccionProductos}>
         <div className={styles.contenedorCategorias}>
           {categories.map((category, index) => (
@@ -73,7 +81,7 @@ const ListaServicios = () => {
         <div className={styles.contenedorServicios}>
           {loading ? (
             <p>Cargando servicios...</p>
-          ) : (
+          ) : filteredServices.length > 0 ? (
             filteredServices.map((service, index) => (
               <div key={index} className={styles.tarjetaProductoPanel}>
                 <h3>Cliente: {service.nombre}</h3>
@@ -88,6 +96,8 @@ const ListaServicios = () => {
                 </div>
               </div>
             ))
+          ) : (
+            <p className={styles.textoBuscadorPanel}>No se encontraron servicios que coincidan con tu búsqueda.</p>
           )}
         </div>
       </div>

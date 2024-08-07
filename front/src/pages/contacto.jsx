@@ -134,6 +134,7 @@ const Contacto = () => {
         overlayClassName={styles.modalOverlay}
       >
         <h2>Mensaje enviado correctamente</h2>
+        <Image src="/tick.svg" alt="Icono modal exitoso" width={40} height={40} className={styles.tickModal}/>
       </Modal>
     </Layout>
   );

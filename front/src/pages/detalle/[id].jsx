@@ -140,6 +140,7 @@ const DetalleProducto = ({ initialProducto, initialProductosRelacionados }) => {
         contentLabel="Producto agregado al carrito"
       >
         <h2>Producto agregado al carrito</h2>
+        <Image src="/tick.svg" alt="Icono modal exitoso" width={40} height={40} className={styles.tickModal}/>
       </Modal>
     </Layout>
   );

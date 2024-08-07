@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image"
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import Modal from "react-modal";
@@ -119,6 +120,7 @@ const Login = () => {
         contentLabel="Inicio de sesión exitoso"
       >
         <h2 className={styles.tituloModal}>Inicio de sesión exitoso</h2>
+        <Image src="/tick.svg" alt="Icono modal exitoso" width={40} height={40} className={styles.tickModal}/>
       </Modal>
     </Layout>
   );

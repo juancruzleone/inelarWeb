@@ -425,13 +425,13 @@
 }
 
 .contenedorMapa{
-  padding-right: 60px;
+  padding-right: 100px;
 }
 
 .contenedorMapa iframe{
-  width: 400px;
-  height: 400px;
-  border-radius: 6px;
+  width: 480px;
+  height: 580px;
+  border-radius: 10px;
   margin-right: 40px;
 }
 
@@ -2226,6 +2226,25 @@
   cursor: pointer;
 }
 
+.Modal .botonEliminarProducto{
+  background-color: red;
+  padding: 6px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-family: "montserrat", sans-serif;
+  border: 0px;
+  cursor: pointer;
+}
+
+.Modal .botonCancelarModal{
+  background-color: #005bb5;
+  padding: 6px;
+  border-radius: 4px;
+  font-family: "montserrat",sans-serif;
+  border: 0px;
+  cursor: pointer;
+}
+
 .contenedorBotonesEditar{
   margin-top: 0px;
 }
@@ -2237,7 +2256,11 @@
 .contenidoPanelEditar span{
   font-weight: bold;
 }
-  
+
+.contenedorImagenActual{
+  margin-bottom: 5px;
+}
+
 
 .sesion {
   display: flex;
@@ -2886,3 +2909,36 @@
   background-color: #f57600;
 }
 
+.tickModal{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+
+.contenedorBotonesModalCrear{
+  display: flex;
+}
+
+.textoBuscadorPanel{
+  margin-left: 80px;
+  margin-top: 75px;
+}
+
+.textoBuscadorPanelClientes{
+  margin-left: 140px;
+  margin-top: 75px;
+}
+
+.textoBuscadorPanelMensajes{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-left: 200px;
+  margin-top: -30px
+}
+
+.textoBuscadorProductos{
+  margin-left: 90px;
+  margin-top: 30px;
+}

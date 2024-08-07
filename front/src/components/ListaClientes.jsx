@@ -60,18 +60,12 @@ const ListaClientes = () => {
   };
 
   const filtrarClientes = () => {
-    let clientesFiltrados = clientes;
-
-    if (categoriaSeleccionada) {
-      clientesFiltrados = clientesFiltrados.filter(cliente => cliente.category === categoriaSeleccionada);
-    }
-
-    if (buscar) {
-      clientesFiltrados = clientesFiltrados.filter(cliente =>
-        cliente.name.toLowerCase().includes(buscar.toLowerCase())
-      );
-    }
-
+    const clientesFiltrados = clientes.filter(cliente => {
+      const coincideCategoria = categoriaSeleccionada === null || cliente.category === categoriaSeleccionada;
+      const coincideBusqueda = 
+        cliente.name.toLowerCase().includes(buscar.toLowerCase());
+      return coincideCategoria && coincideBusqueda;
+    });
     setClientesFiltrados(clientesFiltrados);
   };
 
@@ -216,19 +210,23 @@ const ListaClientes = () => {
             {loading ? (
               <p>Cargando clientes...</p>
             ) : (
-              clientesFiltrados.map((cliente, index) => (
-                <div key={index} className={styles.tarjetaProductoPanelClientes}>
-                  <h3>{cliente.name}</h3>
-                  <div className={styles.contenedorBotonesClientes}>
-                    <button onClick={() => handleEditarCliente(cliente)} className={styles.botonEditar}>
-                      <Image src="/editar.svg" alt="Editar" width={10} height={10} />
-                    </button>
-                    <button onClick={() => handleEliminarCliente(cliente)} className={styles.botonEliminar}>
-                      <Image src="/eliminar.svg" alt="Eliminar" width={10} height={10} />
-                    </button>
+              clientesFiltrados.length > 0 ? (
+                clientesFiltrados.map((cliente, index) => (
+                  <div key={index} className={styles.tarjetaProductoPanelClientes}>
+                    <h3>{cliente.name}</h3>
+                    <div className={styles.contenedorBotonesClientes}>
+                      <button onClick={() => handleEditarCliente(cliente)} className={styles.botonEditar}>
+                        <Image src="/editar.svg" alt="Editar" width={10} height={10} />
+                      </button>
+                      <button onClick={() => handleEliminarCliente(cliente)} className={styles.botonEliminar}>
+                        <Image src="/eliminar.svg" alt="Eliminar" width={10} height={10} />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))
+                ))
+              ) : (
+                <p className={styles.textoBuscadorPanelClientes}>No se encontraron clientes</p>
+              )
             )}
           </div>
         </div>
@@ -320,6 +318,7 @@ const ListaClientes = () => {
         closeTimeoutMS={1000}
       >
         <h2>{mensajeConfirmacion}</h2>
+        <Image src="/tick.svg" alt="Icono modal exitoso" width={40} height={40} className={styles.tickModal}/>
       </Modal>
     </div>
   );

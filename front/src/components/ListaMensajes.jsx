@@ -4,6 +4,8 @@ import styles from "@/styles/Home.module.css";
 const ListaMensajes = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredMessages, setFilteredMessages] = useState([]);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -13,6 +15,7 @@ const ListaMensajes = () => {
         const data = await response.json();
 
         setMessages(data);
+        setFilteredMessages(data); 
       } catch (error) {
         console.error("Error al obtener mensajes:", error);
       } finally {
@@ -23,16 +26,31 @@ const ListaMensajes = () => {
     fetchMessages();
   }, []);
 
+  useEffect(() => {
+    const filtered = messages.filter(message => 
+      message.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      message.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredMessages(filtered);
+  }, [searchTerm, messages]);
+
   return (
     <div className={styles.app}>
       <div className={styles.contenedorPagina}>
-        <h2 className={styles.tituloPaginasPanel}>Mensajes</h2>
+        <h2 className={styles.tituloPaginasPanel}>Mensajes de contacto</h2>
+        <input
+          type="text"
+          placeholder="Buscar mensaje por nombre o email..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.buscadorPanel} 
+        />
         <div className={styles.posicionSeccionProductos}>
           <div className={styles.contenedorProductosPanel}>
             {loading ? (
               <p>Cargando mensajes...</p>
-            ) : (
-              messages.map((message, index) => (
+            ) : filteredMessages.length > 0 ? (
+              filteredMessages.map((message, index) => (
                 <div key={index} className={styles.tarjetaProductoPanel}>
                   <h3>{message.name}</h3>
                   <div className={styles.contenidoTarjetaProductoPanelContacto}>
@@ -41,6 +59,8 @@ const ListaMensajes = () => {
                   </div>
                 </div>
               ))
+            ) : (
+              <p className={styles.textoBuscadorPanelMensajes}>No se encontraron mensajes que coincidan con tu búsqueda.</p>
             )}
           </div>
         </div>

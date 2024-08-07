@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Modal from "react-modal";
+import Image from "next/image"
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
-import styles from "@/styles/Home.module.css";
+import Modal from "react-modal";
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import styles from "@/styles/Home.module.css";
 
 Modal.setAppElement("#__next");
 
@@ -137,6 +138,7 @@ const Register = () => {
         contentLabel="Cuenta registrada"
       >
         <h2 className={styles.tituloModal}>Cuenta registrada exitosamente</h2>
+        <Image src="/tick.svg" alt="Icono modal exitoso" width={40} height={40} className={styles.tickModal}/>
       </Modal>
     </Layout>
   );

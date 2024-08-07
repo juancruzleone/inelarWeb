@@ -249,7 +249,7 @@ const ListaProductos = () => {
           <div className={styles.contenedorClientes}>
             {loading ? (
               <p>Cargando productos...</p>
-            ) : (
+            ) : filteredProducts.length > 0 ? (
               Array.isArray(filteredProducts) && filteredProducts.map((product, index) => (
                 <div key={index} className={styles.tarjetaProductoPanelClientes}>
                   <h3>{product.name}</h3>
@@ -275,6 +275,8 @@ const ListaProductos = () => {
                   </div>
                 </div>
               ))
+            ) : (
+              <p className={styles.textoBuscadorProductos}>No se encontraron productos que coincidan con tu búsqueda.</p>
             )}
           </div>
         </div>
@@ -284,68 +286,63 @@ const ListaProductos = () => {
         isOpen={createModal}
         onRequestClose={handleCloseModal}
         contentLabel="Crear Producto"
-        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
-        closeTimeoutMS={500}
+        className={styles.modal}
+        overlayClassName={styles.overlayModal}
       >
-        <h2>Crear Producto</h2>
-        <form onSubmit={handleCreateSubmit} className={styles.formularioPanel}>
-          <label htmlFor="name">Nombre:</label>
+        <h2 className={styles.tituloModal}>Crear Producto</h2>
+        <form onSubmit={handleCreateSubmit} className={styles.formulario}>
+          <label className={styles.labelModal}>Nombre</label>
           <input
             type="text"
-            id="name"
             name="name"
             value={newProduct.name}
             onChange={handleChange}
+            className={styles.inputModal}
             required
           />
-          <label htmlFor="categoria">Categoría:</label>
-          <select
-            id="categoria"
+          <label className={styles.labelModal}>Categoría</label>
+          <input
+            type="text"
             name="categoria"
             value={newProduct.categoria}
             onChange={handleChange}
+            className={styles.inputModal}
             required
-          >
-            <option value="">Selecciona una categoría</option>
-            {categories.map((categoria, index) => (
-              <option key={index} value={categoria}>
-                {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
-              </option>
-            ))}
-          </select>
-          <label htmlFor="description">Descripción:</label>
+          />
+          <label className={styles.labelModal}>Descripción</label>
           <textarea
-            id="description"
             name="description"
             value={newProduct.description}
-            onChange={handleTextareaInput}
+            onChange={handleChange}
+            onInput={handleTextareaInput}
+            className={styles.textareaModal}
             required
-            className={styles.textarea}
-            ref={(textarea) => {
-              if (textarea) {
-                textarea.style.height = 'auto';
-                textarea.style.height = `${textarea.scrollHeight}px`;
-              }
-            }}
-          ></textarea>
-          <label htmlFor="price">Precio:</label>
+          />
+          <label className={styles.labelModal}>Precio</label>
           <input
             type="number"
-            id="price"
             name="price"
             value={newProduct.price}
             onChange={handleChange}
+            className={styles.inputModal}
             required
           />
-          <label htmlFor="imagen">Imagen:</label>
+          <label className={styles.labelModal}>Imagen</label>
           <input
             type="file"
-            id="imagen"
             name="imagen"
-            accept="image/*"
-            onChange={(e) => setNewProduct({ ...newProduct, imagen: e.target.files[0] })}
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, imagen: e.target.files[0] })
+            }
+            className={styles.inputModal}
+            required
           />
-          <button type="submit">Crear</button>
+          <button type="submit" className={styles.botonModal}>
+            Crear
+          </button>
+          <button onClick={handleCloseModal} className={styles.botonModal}>
+            Cancelar
+          </button>
         </form>
       </Modal>
 
@@ -353,90 +350,90 @@ const ListaProductos = () => {
         isOpen={editModal}
         onRequestClose={handleCloseModal}
         contentLabel="Editar Producto"
-        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
-        closeTimeoutMS={500}
+        className={styles.modal}
+        overlayClassName={styles.overlayModal}
       >
-        <h2>Editar Producto</h2>
-        <form onSubmit={handleEditSubmit} className={styles.formularioPanel}>
-          <label htmlFor="name">Nombre:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={selectedProduct?.name || ""}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="categoria">Categoría:</label>
-          <select
-            id="categoria"
-            name="categoria"
-            value={selectedProduct?.categoria || ""}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Selecciona una categoría</option>
-            {categories.map((categoria, index) => (
-              <option key={index} value={categoria}>
-                {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
-              </option>
-            ))}
-          </select>
-          <label htmlFor="description">Descripción:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={selectedProduct?.description || ""}
-            onChange={handleTextareaInput}
-            required
-            className={styles.textarea}
-            ref={(textarea) => {
-              if (textarea) {
-                textarea.style.height = 'auto';
-                textarea.style.height = `${textarea.scrollHeight}px`;
+        <h2 className={styles.tituloModal}>Editar Producto</h2>
+        {selectedProduct && (
+          <form onSubmit={handleEditSubmit} className={styles.formulario}>
+            <label className={styles.labelModal}>Nombre</label>
+            <input
+              type="text"
+              name="name"
+              value={selectedProduct.name}
+              onChange={handleChange}
+              className={styles.inputModal}
+              required
+            />
+            <label className={styles.labelModal}>Categoría</label>
+            <input
+              type="text"
+              name="categoria"
+              value={selectedProduct.categoria}
+              onChange={handleChange}
+              className={styles.inputModal}
+              required
+            />
+            <label className={styles.labelModal}>Descripción</label>
+            <textarea
+              name="description"
+              value={selectedProduct.description}
+              onChange={handleChange}
+              onInput={handleTextareaInput}
+              className={styles.textareaModal}
+              required
+            />
+            <label className={styles.labelModal}>Precio</label>
+            <input
+              type="number"
+              name="price"
+              value={selectedProduct.price}
+              onChange={handleChange}
+              className={styles.inputModal}
+              required
+            />
+            <label className={styles.labelModal}>Imagen</label>
+            <input
+              type="file"
+              name="imagen"
+              onChange={(e) =>
+                setSelectedProduct({ ...selectedProduct, imagen: e.target.files[0] })
               }
-            }}
-          ></textarea>
-          <label htmlFor="price">Precio:</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={selectedProduct?.price || ""}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="imagen">Imagen:</label>
-          <input
-            type="file"
-            id="imagen"
-            name="imagen"
-            accept="image/*"
-            onChange={(e) => setSelectedProduct({ ...selectedProduct, imagen: e.target.files[0] })}
-          />
-          <button type="submit">Guardar</button>
-        </form>
+              className={styles.inputModal}
+            />
+            <button type="submit" className={styles.botonModal}>
+              Guardar
+            </button>
+            <button onClick={handleCloseModal} className={styles.botonModal}>
+              Cancelar
+            </button>
+          </form>
+        )}
       </Modal>
 
       <Modal
         isOpen={deleteModal}
         onRequestClose={handleCloseModal}
         contentLabel="Eliminar Producto"
-        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
-        closeTimeoutMS={500}
+        className={styles.modal}
+        overlayClassName={styles.overlayModal}
       >
-        <h2>Eliminar Producto</h2>
+        <h2 className={styles.tituloModal}>Eliminar Producto</h2>
         <p>¿Estás seguro de que deseas eliminar este producto?</p>
-        <button onClick={handleDeleteSubmit}>Eliminar</button>
-        <button onClick={handleCloseModal}>Cancelar</button>
+        <button onClick={handleDeleteSubmit} className={styles.botonModal}>
+          Eliminar
+        </button>
+        <button onClick={handleCloseModal} className={styles.botonModal}>
+          Cancelar
+        </button>
       </Modal>
 
       <Modal
         isOpen={confirmationModal}
         onRequestClose={() => setConfirmationModal(false)}
         contentLabel="Confirmación"
-        className={`${styles.ModalPanelCrear} ${styles.Modal}`}
-        closeTimeoutMS={500}
+        className={styles.modal}
+        overlayClassName={styles.overlayModal}
       >
         <p>{confirmationMessage}</p>
       </Modal>
