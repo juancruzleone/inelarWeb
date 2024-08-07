@@ -14,7 +14,8 @@ async function login(req, res) {
   return services
     .login(req.body)
     .then(async (cuenta) => {
-      return { token: await tokenService.createToken(cuenta), cuenta };
+      const token = await tokenService.createToken(cuenta);
+      return { token, cuenta };
     })
     .then((auth) => res.status(200).json(auth))
     .catch((err) => res.status(400).json({ error: { message: err.message } }));
@@ -25,7 +26,7 @@ async function logout(req, res) {
   return tokenService
     .removeToken(token)
     .then(() => {
-      res.status(200).json({ message: "Sesion cerrada correctamente." });
+      res.status(200).json({ message: "Sesión cerrada correctamente." });
     })
     .catch((err) => {
       res.status(400).json({ error: { message: err.message } });

@@ -19,7 +19,7 @@ export async function isAdmin(req, res, next) {
       return res.status(403).json({ error: { message: 'Acceso denegado. Se requiere rol de administrador.' } });
     }
 
-    req.user = user; // Puedes agregar esto si necesitas acceder al usuario en el siguiente middleware
+    req.user = user; 
     next();
   } catch (err) {
     return res.status(403).json({ error: { message: 'Token inválido o usuario no autorizado' } });

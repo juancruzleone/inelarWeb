@@ -29,10 +29,10 @@ route.all('/productos/:id', function todos(req, res, next) {
   next();
 });
 
-// Aplica el middleware isAdmin a las rutas que necesitan verificación de rol
+
 route.post('/productos', [upload.single('imagen'), validateProducto, isAdmin], isAdmin , controllers.addProduct);
 route.put('/productos/:id', [upload.single('imagen'), validateProducto, isAdmin], isAdmin , controllers.putProduct);
 route.patch('/productos/:id', [upload.single('imagen'), validateProductoPatch, isAdmin], isAdmin , controllers.patchProduct);
-route.delete("/productos/:id", isAdmin, controllers.deleteProduct);
+route.delete("/productos/:id", isAdmin  , controllers.deleteProduct);
 
 export default route;

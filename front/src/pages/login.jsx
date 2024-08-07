@@ -49,7 +49,7 @@ const Login = () => {
       const data = await response.json();
       console.log("Login response data:", data);
 
-      // Almacena los datos del usuario, incluyendo el rol
+      
       localStorage.setItem("userData", JSON.stringify(data));
 
       setShowModal(true);
@@ -57,7 +57,7 @@ const Login = () => {
       setTimeout(() => {
         setShowModal(false);
         router.push("/");
-      }, 2000); // Show modal for 2 seconds before redirecting
+      }, 2000); 
 
     } catch (error) {
       setError("Error de red");

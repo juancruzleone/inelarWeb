@@ -62,7 +62,7 @@ const Contacto = () => {
 
       setTimeout(() => {
         setModalIsOpen(false);
-      }, 1000); // Cerrar modal después de 1 segundo
+      }, 1000); 
     } catch (error) {
       console.error("Error al enviar el mensaje:", error);
       alert("Ocurrió un error al enviar el mensaje. Por favor, inténtelo de nuevo.");

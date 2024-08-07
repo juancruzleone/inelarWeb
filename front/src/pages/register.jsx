@@ -42,7 +42,7 @@ const Register = () => {
         return;
       }
 
-      // Automatic login after successful registration
+
       const loginResponse = await fetch("http://localhost:2023/api/cuenta/login", {
         method: "POST",
         headers: {
@@ -67,7 +67,7 @@ const Register = () => {
       setTimeout(() => {
         setShowModal(false);
         router.push("/");
-      }, 2000); // Show modal for 2 seconds before redirecting
+      }, 2000); 
 
     } catch (error) {
       setError("Error de red");

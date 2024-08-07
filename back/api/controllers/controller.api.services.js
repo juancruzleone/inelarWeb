@@ -1,4 +1,3 @@
-// controller.api.servicios.js
 import { db } from "../../db.js";
 import { maintenanceSchema, technicalServiceSchema, installationSchema, provisionsSchema } from "../../schemas/service.schema.js";
 
@@ -6,7 +5,6 @@ async function insertService(service) {
   try {
     let schema;
 
-    // Cambiar 'categoria' a 'category'
     switch (service.category) {
       case 'mantenimiento':
         schema = maintenanceSchema;
