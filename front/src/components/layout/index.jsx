@@ -127,6 +127,7 @@ const Layout = ({ children }) => {
           contentLabel="Sesión cerrada"
         >
           <h2 className={styles.tituloModal}>Sesión cerrada exitosamente</h2>
+          <Image src="/tick.svg" alt="Icono modal exitoso" width={40} height={40} className={styles.tickModal}/>
         </Modal>
       </main>
     </>

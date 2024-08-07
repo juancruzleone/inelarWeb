@@ -114,7 +114,7 @@ const Profile = () => {
         <h2>Listado de pedidos realizados</h2>
         <div className={styles.contenidoOrdenes}>
           {orders.length === 0 ? (
-            <p>No hay pedidos realizados</p>
+            <p className={styles.textoPedidosRealizados}>No hay pedidos realizados</p>
           ) : (
             <ul>
               {orders.map(order => (
