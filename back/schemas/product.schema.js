@@ -1,13 +1,13 @@
 import yup from 'yup';
 
-const productoSchemaCreate = yup.object({
+const productSchemaCreate = yup.object({
   name: yup.string().required(),
   description: yup.string().required(),
   price: yup.number().required(),
   categoria: yup.string().required(),
 });
 
-const productoSchemaPatch = yup.object({
+const productSchemaPatch = yup.object({
   name: yup.string(),
   description: yup.string(),
   price: yup.number(),
@@ -15,6 +15,6 @@ const productoSchemaPatch = yup.object({
 });
 
 export {
-  productoSchemaCreate,
-  productoSchemaPatch
+  productSchemaCreate,
+  productSchemaPatch
 };

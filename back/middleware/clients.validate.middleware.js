@@ -1,7 +1,7 @@
-import { clienteSchemaCreate, clienteSchemaPatch } from '../schemas/client.schema.js';
+import { clientSchemaCreate, clientSchemaPatch } from '../schemas/client.schema.js';
 
-function validateCliente(req, res, next) {
-    clienteSchemaCreate.validate(req.body, { abortEarly: false })
+function validateClient(req, res, next) {
+    clientSchemaCreate.validate(req.body, { abortEarly: false })
         .then((cliente) => {
             req.body = cliente;
             next();
@@ -9,8 +9,8 @@ function validateCliente(req, res, next) {
         .catch((error) => res.status(500).json(error));
 }
 
-function validateClientePatch(req, res, next) {
-    clienteSchemaPatch.validate(req.body, { abortEarly: false, stripUnknown: true })
+function validateClientPatch(req, res, next) {
+    clientSchemaPatch.validate(req.body, { abortEarly: false, stripUnknown: true })
         .then((cliente) => {
             req.body = cliente;
             next();
@@ -19,6 +19,6 @@ function validateClientePatch(req, res, next) {
 }
 
 export {
-    validateCliente,
-    validateClientePatch
+    validateClient,
+    validateClientPatch
 };

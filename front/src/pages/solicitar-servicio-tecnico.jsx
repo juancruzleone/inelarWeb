@@ -16,7 +16,7 @@ const SolicitarServicioTecnico = () => {
     fecha: "",
     dispositivo: "",
     cantidad: 1,
-    category: "tecnico",
+    category: "técnico",
   });
 
   const [productos, setProductos] = useState([]);

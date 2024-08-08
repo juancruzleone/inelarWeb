@@ -1,6 +1,6 @@
-import { productoSchemaCreate, productoSchemaPatch } from '../schemas/product.schema.js';
+import { productSchemaCreate, productSchemaPatch } from '../schemas/product.schema.js';
 
-function validateProducto(req, res, next) {
+function validateProduct(req, res, next) {
   productoSchemaCreate.validate(req.body, { abortEarly: false })
     .then((producto) => {
       req.body = producto;
@@ -9,7 +9,7 @@ function validateProducto(req, res, next) {
     .catch((error) => res.status(400).json({ error: error.errors }));
 }
 
-function validateProductoPatch(req, res, next) {
+function validateProductPatch(req, res, next) {
   productoSchemaPatch.validate(req.body, { abortEarly: false, stripUnknown: true })
     .then((producto) => {
       req.body = producto;
@@ -19,6 +19,6 @@ function validateProductoPatch(req, res, next) {
 }
 
 export {
-  validateProducto,
-  validateProductoPatch
+  validateProduct,
+  validateProductPatch
 };

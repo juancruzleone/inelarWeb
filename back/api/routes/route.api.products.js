@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import multer from 'multer';
 import * as controllers from '../controllers/controller.api.products.js';
-import { validateProducto, validateProductoPatch } from '../../middleware/product.validate.middleware.js';
-import { isAdmin } from '../../middleware/auth.role.middleware.js'; // Importa el middleware
+import { validateProduct, validateProductPatch } from '../../middleware/product.validate.middleware.js';
+import { isAdmin } from '../../middleware/auth.role.middleware.js'; 
 import fs from 'fs';
 
 const route = Router();
@@ -30,9 +30,9 @@ route.all('/productos/:id', function todos(req, res, next) {
 });
 
 
-route.post('/productos', [upload.single('imagen'), validateProducto, isAdmin], isAdmin , controllers.addProduct);
-route.put('/productos/:id', [upload.single('imagen'), validateProducto, isAdmin], isAdmin , controllers.putProduct);
-route.patch('/productos/:id', [upload.single('imagen'), validateProductoPatch, isAdmin], isAdmin , controllers.patchProduct);
+route.post('/productos', [upload.single('imagen'), validateProduct, isAdmin], isAdmin , controllers.addProduct);
+route.put('/productos/:id', [upload.single('imagen'), validateProduct, isAdmin], isAdmin , controllers.putProduct);
+route.patch('/productos/:id', [upload.single('imagen'), validateProductPatch, isAdmin], isAdmin , controllers.patchProduct);
 route.delete("/productos/:id", isAdmin  , controllers.deleteProduct);
 
 export default route;
